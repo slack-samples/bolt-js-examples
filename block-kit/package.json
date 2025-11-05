@@ -1,0 +1,29 @@
+{
+  "$schema": "https://www.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx tsc --checkJs --noEmit src/**/*.js tests/**/*.js",
+    "lint": "npx @biomejs/biome check src tests",
+    "lint:fix": "npx @biomejs/biome check --write src tests",
+    "test": "node --test tests/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slack-samples/bolt-js-showcase.git"
+  },
+  "author": "Slack Technologies, LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/slack-samples/bolt-js-showcase/issues"
+  },
+  "homepage": "https://github.com/slack-samples/bolt-js-showcase/blob/main/block-kit/README.md",
+  "dependencies": {
+    "@slack/types": "^2.18.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.3",
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  }
+}
