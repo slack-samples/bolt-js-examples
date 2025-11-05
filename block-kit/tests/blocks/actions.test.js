@@ -1,4 +1,4 @@
-import * as assert from "node:assert/strict";
+import * as assert from "node:assert";
 import { describe, it } from "node:test";
 import { example01, example02 } from "../../src/blocks/actions.js";
 
