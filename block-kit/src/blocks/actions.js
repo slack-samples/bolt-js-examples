@@ -7,7 +7,7 @@
 /**
  * An actions block with a select menu and a button.
  *
- * @returns {import('@slack/types').ActionsBlock} The actions block
+ * @returns {import('@slack/types').ActionsBlock}
  */
 export function example01() {
   /**
@@ -72,7 +72,7 @@ export function example01() {
 /**
  * An actions block with a datepicker, an overflow, and a button.
  *
- * @returns {import('@slack/types').ActionsBlock} The actions block
+ * @returns {import('@slack/types').ActionsBlock}
  */
 export function example02() {
   /**
