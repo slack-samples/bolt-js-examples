@@ -12,6 +12,7 @@ jobs:
       matrix:
         showcase:
           - "block-kit"
+          - "surfaces/app-home"
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
