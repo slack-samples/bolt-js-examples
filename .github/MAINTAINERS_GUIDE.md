@@ -8,7 +8,7 @@ Let's hope to have matching examples of documentation and reference for various 
 
 ## Development
 
-Bringing ongoing changes from the [Node Slack SDK](https://github.com/slackapi/node-slack-sdk) requires [building from source](https://docs.slack.dev/tools/java-slack-sdk/guides/web-api-client-setup#build-from-source) with these commands:
+Bringing ongoing changes from the [Node Slack SDK](https://github.com/slackapi/node-slack-sdk) requires building from source with these commands:
 
 ```sh
 $ git clone git@github.com:slackapi/node-slack-sdk.git
