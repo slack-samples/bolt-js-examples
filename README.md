@@ -1,4 +1,4 @@
-# Bolt for JavaScript Showcase
+# Bolt for JavaScript Examples
 
 This collections of examples highlights features of a Slack app in the language of Bolt for JavaScript.
 
