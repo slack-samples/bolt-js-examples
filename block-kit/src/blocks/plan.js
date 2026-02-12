@@ -1,7 +1,5 @@
 /**
- * Displays a plan with multiple task cards representing a sequence of actions.
- *
- * This is an experimental block type that requires a toggle to preview.
+ * Displays a collection of related tasks.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/plan-block/}
  */

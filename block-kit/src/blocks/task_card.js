@@ -1,7 +1,5 @@
 /**
- * Displays a single task which represents a single action.
- *
- * This is an experimental block type that requires a toggle to preview.
+ * Displays a single task, representing a single action.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/task-card-block/}
  */
