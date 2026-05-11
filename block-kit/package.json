@@ -21,7 +21,7 @@
     "@slack/types": "^2.21.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.14",
+    "@biomejs/biome": "^2.4.15",
     "@types/node": "^24.12.3",
     "typescript": "^6.0.3"
   }
