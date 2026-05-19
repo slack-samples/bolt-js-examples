@@ -18,11 +18,15 @@
   },
   "homepage": "https://github.com/slack-samples/bolt-js-examples/blob/main/block-kit/README.md",
   "dependencies": {
-    "@slack/types": "^2.21.1"
+    "@slack/types": "3.0.0-rc.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.15",
     "@types/node": "^24.12.4",
     "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=9.6.4"
   }
 }
