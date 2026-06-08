@@ -1,0 +1,27 @@
+{
+  "display_information": {
+    "name": "MCP Docs Server",
+    "description": "Serves public Slack documentation to Slackbot via MCP (no auth)"
+  },
+  "features": {
+    "bot_user": {
+      "display_name": "MCP Docs Server",
+      "always_online": true
+    }
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": ["mcp:connect"]
+    }
+  },
+  "settings": {
+    "org_deploy_enabled": true,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  },
+  "mcp_servers": {
+    "docs": {
+      "url": "https://YOUR_URL/mcp"
+    }
+  }
+}
