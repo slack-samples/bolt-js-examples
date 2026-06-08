@@ -19,7 +19,7 @@ Update `manifest.json` with your ngrok URL, create the app at [api.slack.com/app
 
 ```bash
 cp .env.sample .env
-# Fill in SLACK_SIGNING_SECRET, SLACK_CLIENT_ID, SLACK_CLIENT_SECRET
+# Fill in SLACK_BOT_TOKEN, SLACK_SIGNING_SECRET
 npm start
 ```
 

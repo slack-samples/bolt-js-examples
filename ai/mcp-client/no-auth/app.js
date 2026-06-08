@@ -34,16 +34,9 @@ function createServer() {
 // --- Bolt App ---
 
 const app = new App({
-  logLevel: LogLevel.DEBUG,
+  token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
-  clientId: process.env.SLACK_CLIENT_ID,
-  clientSecret: process.env.SLACK_CLIENT_SECRET,
-  stateSecret: 'mcp-no-auth-example',
-  scopes: ['mcp:connect'],
-  installationStore: {
-    storeInstallation: async () => {},
-    fetchInstallation: async () => {},
-  },
+  logLevel: LogLevel.DEBUG,
 });
 
 const port = Number.parseInt(process.env.PORT || '3000', 10);
