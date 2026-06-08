@@ -1,5 +1,4 @@
 {
-  "$schema": "file:///Users/eden.zimbelman/programming/tools/manifest-schema/schemas/manifest.schema.1.0.0.json",
   "display_information": {
     "name": "MCP Profile Card",
     "description": "Looks up Slack user profiles via MCP (Slack identity auth)"
