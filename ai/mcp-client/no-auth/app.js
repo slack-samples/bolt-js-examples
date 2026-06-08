@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import { App, LogLevel } from '@slack/bolt';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
