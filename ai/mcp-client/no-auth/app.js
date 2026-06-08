@@ -31,24 +31,32 @@ function createServer() {
   return server;
 }
 
-// --- Bolt App ---
+// --- Bolt App (HTTP mode with custom /mcp route) ---
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   logLevel: LogLevel.DEBUG,
+  customRoutes: [
+    {
+      path: '/mcp',
+      method: 'POST',
+      handler: async (req, res) => {
+        const chunks = [];
+        for await (const chunk of req) chunks.push(chunk);
+        const body = JSON.parse(Buffer.concat(chunks).toString());
+
+        const server = createServer();
+        const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+        await server.connect(transport);
+        await transport.handleRequest(req, res, body);
+      },
+    },
+  ],
 });
 
 const port = Number.parseInt(process.env.PORT || '3000', 10);
 await app.start(port);
-
-// Mount MCP endpoint
-app.receiver.app.post('/mcp', async (req, res) => {
-  const server = createServer();
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
-  await server.connect(transport);
-  await transport.handleRequest(req, res, req.body);
-});
 
 console.log(`⚡ MCP Server (no-auth) running on port ${port}`);
 console.log(`   POST http://localhost:${port}/mcp`);
