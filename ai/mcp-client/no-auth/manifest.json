@@ -1,11 +1,11 @@
 {
   "display_information": {
-    "name": "MCP Docs Server",
-    "description": "Serves public Slack documentation to Slackbot via MCP (no auth)"
+    "name": "MCP Dice Roller",
+    "description": "Roll dice with interactive buttons via MCP (no auth)"
   },
   "features": {
     "bot_user": {
-      "display_name": "MCP Docs Server",
+      "display_name": "MCP Dice Roller",
       "always_online": true
     }
   },
@@ -20,8 +20,8 @@
     "token_rotation_enabled": false
   },
   "mcp_servers": {
-    "docs": {
-      "url": "https://88bf-170-39-168-237.ngrok-free.app/mcp",
+    "dice": {
+      "url": "https://8af2-136-226-79-2.ngrok-free.app/mcp",
       "auth_type": "no_auth"
     }
   }
