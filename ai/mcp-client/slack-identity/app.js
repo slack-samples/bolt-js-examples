@@ -19,7 +19,7 @@ import { z } from "zod";
  * @see {@link https://github.com/modelcontextprotocol/typescript-sdk#getting-started}
  */
 function createServer(client, installationStore, logger) {
-  const server = new McpServer({ name: "slack-identity", version: "1.0.0" });
+  const server = new McpServer({ name: "slack-identity-example", version: "1.0.0" });
 
   server.registerTool(
     "get_profile_card",
@@ -45,7 +45,7 @@ function createServer(client, installationStore, logger) {
           content: [
             {
               type: "text",
-              text: "Sign in with Slack to look up user profiles.",
+              text: "Missing Slack identity context. This tool must be called from Slack.",
             },
           ],
         };
@@ -69,7 +69,7 @@ function createServer(client, installationStore, logger) {
           content: [
             {
               type: "text",
-              text: "App not installed for this workspace. Please install first.",
+              text: "App not installed to this workspace. Please install first.",
             },
           ],
           _meta: {
@@ -97,16 +97,27 @@ function createServer(client, installationStore, logger) {
         };
       }
 
-      const result = await client.users.info({
-        token: botToken,
-        user: user_id,
-      });
-      if (!result.user?.profile) {
+      let profile;
+      try {
+        const result = await client.users.info({
+          token: botToken,
+          user: user_id,
+        });
+        if (!result.user?.profile) {
+          throw new Error(`User ${user_id} not found.`);
+        }
+        profile = result.user.profile;
+      } catch (err) {
+        logger.error(err);
         return {
-          content: [{ type: "text", text: `User ${user_id} not found.` }],
+          content: [
+            {
+              type: "text",
+              text: `Failed to fetch profile for ${user_id}.`,
+            },
+          ],
         };
       }
-      const { profile } = result.user;
 
       return {
         content: [
