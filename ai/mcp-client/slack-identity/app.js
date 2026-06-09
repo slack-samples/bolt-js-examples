@@ -4,10 +4,22 @@ import { App, isValidSlackRequest, LogLevel } from "@slack/bolt";
 import { FileInstallationStore } from "@slack/oauth";
 import { z } from "zod";
 
-// --- MCP Server: get_profile_card (Slack identity auth) ---
+/**
+ * @typedef {object} SlackIdentity
+ * @property {string} [user_id]
+ * @property {string} [team_id]
+ * @property {string} [enterprise_id]
+ */
 
+/**
+ * Creates an MCP server with a Slack profile card tool.
+ * @param {import("@slack/web-api").WebClient} client - Slack Web API client
+ * @param {import("@slack/oauth").InstallationStore} installationStore - OAuth installation store
+ * @param {import("@slack/bolt").Logger} logger - Bolt logger instance
+ * @see {@link https://github.com/modelcontextprotocol/typescript-sdk#getting-started}
+ */
 function createServer(client, installationStore, logger) {
-  const server = new McpServer({ name: "slack-profile", version: "1.0.0" });
+  const server = new McpServer({ name: "slack-identity", version: "1.0.0" });
 
   server.registerTool(
     "get_profile_card",
@@ -25,7 +37,8 @@ function createServer(client, installationStore, logger) {
       },
     },
     async ({ user_id }, { _meta }) => {
-      const slack = _meta?.slack;
+      /** @type {SlackIdentity | undefined} */
+      const slack = /** @type {any} */ (_meta?.slack);
 
       if (!slack?.user_id || !slack?.team_id) {
         return {
@@ -43,12 +56,15 @@ function createServer(client, installationStore, logger) {
         const installation = await installationStore.fetchInstallation({
           teamId: slack.team_id,
           userId: slack.user_id,
-          ...(slack.enterprise_id && { enterpriseId: slack.enterprise_id }),
+          enterpriseId: slack.enterprise_id || undefined,
           isEnterpriseInstall: !!slack.enterprise_id,
         });
+        if (!installation.bot?.token) {
+          throw new Error("No bot token found for this installation");
+        }
         botToken = installation.bot.token;
       } catch (err) {
-        logger.error(err.message);
+        logger.error(err);
         return {
           content: [
             {
@@ -63,7 +79,7 @@ function createServer(client, installationStore, logger) {
                   type: "section",
                   text: {
                     type: "mrkdwn",
-                    text: "This app needs to be installed before it can look up profiles.",
+                    text: "Please install the *MCP Profile Card* app to access profile information.",
                   },
                   accessory: {
                     type: "button",
@@ -81,26 +97,26 @@ function createServer(client, installationStore, logger) {
         };
       }
 
-      const { user } = await client.users.info({
+      const result = await client.users.info({
         token: botToken,
         user: user_id,
       });
-      const { profile } = user;
-
-      const subtitle = [
-        profile.title,
-        profile.status_emoji
-          ? `${profile.status_emoji} ${profile.status_text}`
-          : null,
-      ]
-        .filter(Boolean)
-        .join(" · ");
+      if (!result.user?.profile) {
+        return {
+          content: [{ type: "text", text: `User ${user_id} not found.` }],
+        };
+      }
+      const { profile } = result.user;
 
       return {
         content: [
           {
             type: "text",
-            text: `Profile card for ${profile.real_name_normalized || user.name}`,
+            text: [
+              `Profile card for ${profile.real_name}`,
+              `Title: ${profile.title}`,
+              `Email: ${profile.email}`,
+            ].join("\n"),
           },
         ],
         _meta: {
@@ -108,27 +124,22 @@ function createServer(client, installationStore, logger) {
             blocks: [
               {
                 type: "card",
-                icon: profile.image_72
-                  ? {
-                      type: "image",
-                      image_url: profile.image_72,
-                      alt_text: profile.real_name_normalized || user.name,
-                    }
-                  : undefined,
+                icon: {
+                  type: "image",
+                  image_url: profile.image_72,
+                  alt_text: profile.real_name,
+                },
                 title: {
                   type: "mrkdwn",
-                  text: profile.real_name_normalized || user.name,
+                  text: profile.real_name,
                 },
-                subtitle: subtitle
-                  ? { type: "mrkdwn", text: subtitle }
-                  : undefined,
+                subtitle: {
+                  type: "mrkdwn",
+                  text: profile.title,
+                },
                 body: {
                   type: "mrkdwn",
-                  text: [
-                    `*Email:* ${profile.email || "N/A"}`,
-                    `*Timezone:* ${user.tz_label || "N/A"}`,
-                    `*Display name:* @${profile.display_name_normalized || user.name}`,
-                  ].join("\n"),
+                  text: `*Email:* ${profile.email}`,
                 },
               },
             ],
@@ -141,10 +152,12 @@ function createServer(client, installationStore, logger) {
   return server;
 }
 
-// --- Bolt App (HTTP mode with OAuth install flow + custom /mcp route) ---
-
+/**
+ * Bolt app with OAuth install flow and custom /mcp route.
+ * @see {@link https://docs.slack.dev/tools/bolt-js/getting-started}
+ */
 const installationStore = new FileInstallationStore({
-  baseDir: "./installations",
+  baseDir: "./installations/",
 });
 
 const app = new App({
@@ -168,8 +181,8 @@ const app = new App({
 
         if (
           !isValidSlackRequest({
-            signingSecret: process.env.SLACK_SIGNING_SECRET,
-            headers: req.headers,
+            signingSecret: `${process.env.SLACK_SIGNING_SECRET}`,
+            headers: /** @type {any} */ (req.headers),
             body: rawBody,
           })
         ) {
@@ -195,10 +208,13 @@ const app = new App({
   ],
 });
 
-(async () => {
-  const port = Number.parseInt(process.env.PORT || "3000", 10);
-  await app.start(port);
+const port = Number.parseInt(process.env.PORT || "3000", 10);
 
-  app.logger.info(`⚡ MCP Server (slack-identity) running on port ${port}`);
-  app.logger.info(`   POST http://localhost:${port}/mcp`);
+(async () => {
+  try {
+    await app.start(port);
+    app.logger.info("⚡️ Bolt app is running!");
+  } catch (error) {
+    app.logger.error("Failed to start the app", error);
+  }
 })();
