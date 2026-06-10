@@ -1,22 +1,14 @@
-# MCP Client Examples
+# MCP Client
 
-Slack's MCP Client allows you to connect your MCP servers to Slackbot through the standard Slack App framework. These examples demonstrate all 4 authentication types.
+Surface tools of an MCP server to the Slackbot MCP client.
 
-Read the [docs](https://docs.slack.dev/ai/slack-mcp-server) to learn more about integrating MCP servers with Slack.
+Read the [docs](https://docs.slack.dev/ai/slack-mcp-client) to explore more concepts around MCP.
 
-## Examples
+## Included examples
 
-| Example | Auth Type | Description |
-|---------|-----------|-------------|
-| [no-auth](./no-auth) | No auth | Simplest setup. Public data, no credentials needed. |
-| [slack-identity](./slack-identity) | Slack Identity | Slack signs requests with user context. No separate OAuth. |
-| [dynamic-client-registration](./dynamic-client-registration) | DCR | Slack auto-registers as an OAuth client (e.g., Notion). |
-| [external-auth](./external-auth) | External Auth Provider | Manual OAuth setup with a third-party (e.g., GitHub). |
+### Authentication methods
 
-## How it works
-
-1. You provide a remote MCP server (Streamable HTTP transport)
-2. You declare it in your Slack app manifest with `mcp:connect` scope
-3. Slackbot discovers your tools and invokes them based on user prompts
-
-No custom Slack bot logic is needed. Slackbot is the AI layer — your MCP server provides the tools.
+- **[Dynamic client registration](./dynamic-client-registration)**: Connect a remote MCP server with standard OAuth discovery. [Implementation](./dynamic-client-registration/manifest.json).
+- **[External auth](./external-auth)**: Connect a remote MCP server with manual OAuth provider configuration. [Implementation](./external-auth/manifest.json).
+- **[No auth](./no-auth)**: Perform tool calls with minimal verification of incoming requests. [Implementation](./no-auth/app.js).
+- **[Slack identity](./slack-identity)**: Perform tool calls using Slack identity auth and an OAuth install flow. [Implementation](./slack-identity/app.js).
