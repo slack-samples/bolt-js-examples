@@ -4,5 +4,5 @@ This collections of examples highlights features of a Slack app in the language 
 
 ## Available demonstrations
 
-- **[AI in Slack](./ai/mcp-client)**: Agent experiences and MCP features in an interactive conversation interface.
+- **[AI in Slack](./ai)**: Agent experiences and MCP features in an interactive conversation interface.
 - **[Block Kit](./block-kit)**: The framework of visual components arranged to create app layouts.
