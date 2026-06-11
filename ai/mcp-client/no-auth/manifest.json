@@ -1,11 +1,11 @@
 {
   "display_information": {
-    "name": "Slackbot MCP Client - No Auth",
+    "name": "MCP Client - No Auth",
     "description": "Connects app MCP server to Slackbot MCP client without using auth"
   },
   "features": {
     "bot_user": {
-      "display_name": "Slackbot MCP Client - No Auth",
+      "display_name": "MCP Client - No Auth",
       "always_online": true
     }
   },
