@@ -10,7 +10,7 @@ Connect a remote MCP server with manual OAuth provider configuration.
 $ open https://github.com/settings/developers # Create GitHub app
 $ slack manifest                              # Replace values
 $ slack install --environment deployed        # Create Slack app
-$ slack external-auth add-secret --force
+$ slack external-auth add-secret
 ```
 
 Ask Slackbot: "Show me my recent GitHub pull requests"
