@@ -1,11 +1,11 @@
 {
   "display_information": {
-    "name": "Slackbot MCP Client - Slack Identity",
+    "name": "Slackbot MCP Client - ID",
     "description": "Connects app MCP server to Slackbot MCP client using Slack identity auth"
   },
   "features": {
     "bot_user": {
-      "display_name": "Slackbot MCP Client - Slack Identity",
+      "display_name": "Slackbot MCP Client - ID",
       "always_online": true
     }
   },
