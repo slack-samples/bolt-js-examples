@@ -19,7 +19,10 @@ import { z } from "zod";
  * @see {@link https://github.com/modelcontextprotocol/typescript-sdk#getting-started}
  */
 function createServer(client, installationStore, logger) {
-  const server = new McpServer({ name: "slack-identity-example", version: "1.0.0" });
+  const server = new McpServer({
+    name: "slack-identity-example",
+    version: "1.0.0",
+  });
 
   server.registerTool(
     "get_profile_card",

@@ -9,6 +9,7 @@ jobs:
     name: "node@node24"
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         showcase:
           - "ai/mcp-client/no-auth"
