@@ -2,11 +2,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "test": "node --test",
     "check": "npx tsc --checkJs --noEmit app.js",
     "lint": "npx @biomejs/biome check .",
-    "lint:fix": "npx @biomejs/biome check --write ."
+    "lint:fix": "npx @biomejs/biome check --write .",
+    "start": "node app.js",
+    "test": "node --test"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
