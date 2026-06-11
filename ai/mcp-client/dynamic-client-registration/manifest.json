@@ -1,11 +1,11 @@
 {
   "display_information": {
-    "name": "MCP Notion Server",
-    "description": "Connects Notion to Slackbot via MCP (Dynamic Client Registration)"
+    "name": "Slackbot MCP Client - Dynamic Client Registration",
+    "description": "Connects Notion MCP server to Slackbot MCP client using dynamic client registration"
   },
   "features": {
     "bot_user": {
-      "display_name": "MCP Notion Server",
+      "display_name": "Slackbot MCP Client - Dynamic Client Registration",
       "always_online": true
     }
   },

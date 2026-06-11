@@ -1,16 +1,16 @@
 {
   "display_information": {
-    "name": "MCP Profile Card",
-    "description": "Looks up Slack user profiles via MCP (Slack identity auth)"
+    "name": "Slackbot MCP Client - Slack Identity",
+    "description": "Connects app MCP server to Slackbot MCP client using Slack identity auth"
   },
   "features": {
     "bot_user": {
-      "display_name": "MCP Profile Card",
+      "display_name": "Slackbot MCP Client - Slack Identity",
       "always_online": true
     }
   },
   "oauth_config": {
-    "redirect_urls": ["https://8af2-136-226-79-2.ngrok-free.app/slack/oauth_redirect"],
+    "redirect_urls": ["https://1234-56-78-90-0.ngrok-free.app/slack/oauth_redirect"],
     "scopes": {
       "bot": ["mcp:connect", "users:read", "users:read.email"]
     }
@@ -22,7 +22,7 @@
   },
   "mcp_servers": {
     "profile": {
-      "url": "https://8af2-136-226-79-2.ngrok-free.app/mcp",
+      "url": "https://1234-56-78-90-0.ngrok-free.app/mcp",
       "auth_type": "slack_identity_auth"
     }
   }
