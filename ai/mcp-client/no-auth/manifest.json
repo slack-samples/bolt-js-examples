@@ -1,7 +1,7 @@
 {
   "display_information": {
     "name": "MCP Client - No Auth",
-    "description": "Connects app MCP server to Slackbot MCP client without using auth"
+    "description": "Connects app MCP server to Slackbot MCP client without authentication"
   },
   "features": {
     "bot_user": {
@@ -21,7 +21,7 @@
   },
   "mcp_servers": {
     "dice": {
-      "url": "https://1234-56-78-90-0.ngrok-free.app/mcp",
+      "url": "https://8af2-136-226-79-2.ngrok-free.app/mcp",
       "auth_type": "no_auth"
     }
   }

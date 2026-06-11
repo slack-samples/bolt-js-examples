@@ -1,6 +1,6 @@
 # No Auth
 
-Run an MCP server that connects to Slackbot and responds with an [interactive UI](https://modelcontextprotocol.io/extensions/apps/overview).
+Run an MCP server that connects to Slackbot and responds with an [interactive UI](https://modelcontextprotocol.io/extensions/apps/overview) without authentication.
 
 ## Setup
 
