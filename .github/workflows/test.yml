@@ -11,6 +11,8 @@ jobs:
     strategy:
       matrix:
         showcase:
+          - "ai/mcp-client/no-auth"
+          - "ai/mcp-client/slack-identity"
           - "block-kit"
     steps:
       - name: Checkout code
