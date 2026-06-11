@@ -6,4 +6,4 @@ Read the [docs](https://docs.slack.dev/ai/) to learn concepts behind these const
 
 ## What's on display
 
-- **[MCP Client](mcp-client/)**: Connect MCP servers to Slackbot with different authentication types.
+- **[MCP Client](mcp-client/)**: Connect MCP servers to Slackbot MCP client with different options for authentication.

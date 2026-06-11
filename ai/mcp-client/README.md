@@ -1,6 +1,6 @@
 # MCP Client
 
-Surface tools of an MCP server to the Slackbot MCP client.
+Connect MCP servers to Slackbot MCP client with different options for authentication.
 
 Read the [docs](https://docs.slack.dev/ai/slack-mcp-client) to explore more concepts around MCP.
 
