@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "npx tsc --checkJs --noEmit src/**/*.js tests/**/*.js",
+    "check": "npx tsc --checkJs --noEmit --types node src/**/*.js tests/**/*.js",
     "lint": "npx @biomejs/biome check src tests",
     "lint:fix": "npx @biomejs/biome check --write src tests",
     "test": "node --test"
@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/slack-samples/bolt-js-examples/blob/main/block-kit/README.md",
   "dependencies": {
-    "@slack/types": "^2.20.0"
+    "@slack/types": "^2.21.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.14",
-    "@types/node": "^24.10.13",
-    "typescript": "^5.9.3"
+    "@biomejs/biome": "^2.4.16",
+    "@types/node": "^24.13.2",
+    "typescript": "^6.0.3"
   }
 }
