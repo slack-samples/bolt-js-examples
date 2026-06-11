@@ -25,7 +25,7 @@
         "provider_type": "CUSTOM",
         "options": {
           "client_id": "YOUR_GITHUB_CLIENT_ID",
-          "scope": [],
+          "scope": ["repo"],
           "provider_name": "GitHub",
           "authorization_url": "https://github.com/login/oauth/authorize",
           "token_url": "https://github.com/login/oauth/access_token",
