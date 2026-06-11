@@ -5,25 +5,28 @@ import nock from "nock";
 
 const SIGNING_SECRET = "test_signing_secret_for_testing";
 
-process.env.SLACK_BOT_TOKEN = "xoxb-test-token";
-process.env.SLACK_SIGNING_SECRET = SIGNING_SECRET;
-
-nock("https://slack.com")
-  .post("/api/auth.test")
-  .reply(200, { ok: true, bot_id: "B0101", user_id: "U0123" });
-
-const { app } = await import("../src/app.js");
-
 describe("mcp", () => {
+  let app;
   let port;
 
   before(async () => {
+    process.env.SLACK_BOT_TOKEN = "xoxb-test-token";
+    process.env.SLACK_SIGNING_SECRET = SIGNING_SECRET;
+
+    nock("https://slack.com")
+      .post("/api/auth.test")
+      .reply(200, { ok: true, bot_id: "B0101", user_id: "U0123" });
+
+    const mod = await import("../src/app.js");
+    app = mod.app;
     const server = await app.start(0);
     port = server.address().port;
   });
 
   after(async () => {
     await app.stop();
+    delete process.env.SLACK_BOT_TOKEN;
+    delete process.env.SLACK_SIGNING_SECRET;
   });
 
   it("returns tool call results", async () => {

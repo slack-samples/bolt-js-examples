@@ -5,48 +5,48 @@ import { after, before, describe, it } from "node:test";
 import nock from "nock";
 
 const SIGNING_SECRET = "test_signing_secret_for_testing";
-
-process.env.SLACK_CLIENT_ID = "111.222";
-process.env.SLACK_CLIENT_SECRET = "test_client_secret";
-process.env.SLACK_SIGNING_SECRET = SIGNING_SECRET;
-process.env.SLACK_STATE_SECRET = "test_state_secret";
-process.env.BASE_URL = "http://localhost:3000";
-
 const TEAM_ID = "T0001";
 const USER_ID = "U0001";
 const BOT_TOKEN = "xoxb-test-bot-token";
 
-mkdirSync(`./installations/${TEAM_ID}`, { recursive: true });
-writeFileSync(
-  `./installations/${TEAM_ID}/app-latest`,
-  JSON.stringify({
-    team: { id: TEAM_ID },
-    user: { id: USER_ID, token: "xoxp-user" },
-    bot: { id: "B0001", token: BOT_TOKEN, userId: "U0002" },
-  }),
-);
-
-nock("https://slack.com")
-  .post("/api/users.info")
-  .reply(200, {
-    ok: true,
-    user: {
-      id: USER_ID,
-      profile: {
-        real_name: "Test User",
-        title: "VIP",
-        email: "test@example.com",
-        image_72: "https://example.com/avatar.png",
-      },
-    },
-  });
-
-const { app } = await import("../src/app.js");
-
 describe("mcp", () => {
+  let app;
   let port;
 
   before(async () => {
+    process.env.SLACK_CLIENT_ID = "111.222";
+    process.env.SLACK_CLIENT_SECRET = "test_client_secret";
+    process.env.SLACK_SIGNING_SECRET = SIGNING_SECRET;
+    process.env.SLACK_STATE_SECRET = "test_state_secret";
+    process.env.BASE_URL = "http://localhost:3000";
+
+    mkdirSync(`./installations/${TEAM_ID}`, { recursive: true });
+    writeFileSync(
+      `./installations/${TEAM_ID}/app-latest`,
+      JSON.stringify({
+        team: { id: TEAM_ID },
+        user: { id: USER_ID, token: "xoxp-user" },
+        bot: { id: "B0001", token: BOT_TOKEN, userId: "U0002" },
+      }),
+    );
+
+    nock("https://slack.com")
+      .post("/api/users.info")
+      .reply(200, {
+        ok: true,
+        user: {
+          id: USER_ID,
+          profile: {
+            real_name: "Test User",
+            title: "VIP",
+            email: "test@example.com",
+            image_72: "https://avatars.slack-edge.com/2026-01-01/123456_abc123def456_72.jpg",
+          },
+        },
+      });
+
+    const mod = await import("../src/app.js");
+    app = mod.app;
     const server = await app.start(0);
     port = server.address().port;
   });
@@ -54,6 +54,11 @@ describe("mcp", () => {
   after(async () => {
     await app.stop();
     rmSync("./installations", { recursive: true, force: true });
+    delete process.env.SLACK_CLIENT_ID;
+    delete process.env.SLACK_CLIENT_SECRET;
+    delete process.env.SLACK_SIGNING_SECRET;
+    delete process.env.SLACK_STATE_SECRET;
+    delete process.env.BASE_URL;
   });
 
   it("returns tool call response", async () => {
