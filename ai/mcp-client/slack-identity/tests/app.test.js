@@ -40,7 +40,8 @@ describe("mcp", () => {
             real_name: "Test User",
             title: "VIP",
             email: "test@example.com",
-            image_72: "https://avatars.slack-edge.com/2026-01-01/123456_abc123def456_72.jpg",
+            image_72:
+              "https://avatars.slack-edge.com/2026-01-01/123456_abc123def456_72.jpg",
           },
         },
       });
