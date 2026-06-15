@@ -1,6 +1,6 @@
 # Slackbot MCP Client
 
-Connect MCP servers to Slackbot MCP client with different options for authentication.
+Connect MCP servers to Slackbot with different options for authentication.
 
 Read the [docs](https://docs.slack.dev/ai/slack-mcp-client) to explore more concepts around MCP.
 
