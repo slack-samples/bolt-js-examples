@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
-    directory: "ai/mcp-client/no-auth"
+    directory: "ai/slackbot-mcp-client/no-auth"
     schedule:
       interval: "daily"
     ignore:
@@ -13,7 +13,7 @@ updates:
         versions:
           - "25.x"
   - package-ecosystem: "npm"
-    directory: "ai/mcp-client/slack-identity"
+    directory: "ai/slackbot-mcp-client/slack-identity"
     schedule:
       interval: "daily"
     ignore:

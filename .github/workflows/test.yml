@@ -12,8 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         showcase:
-          - "ai/mcp-client/no-auth"
-          - "ai/mcp-client/slack-identity"
+          - "ai/slackbot-mcp-client/no-auth"
+          - "ai/slackbot-mcp-client/slack-identity"
           - "block-kit"
     steps:
       - name: Checkout code

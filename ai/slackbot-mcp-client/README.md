@@ -1,4 +1,4 @@
-# MCP Client
+# Slackbot MCP Client
 
 Connect MCP servers to Slackbot MCP client with different options for authentication.
 
