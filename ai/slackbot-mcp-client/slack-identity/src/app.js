@@ -24,11 +24,15 @@ function createServer(client, installationStore, logger) {
   server.registerTool(
     "get_profile_card",
     {
+      title: "Get Profile Card",
       description: "Get a profile card for a Slack user by their user ID.",
       inputSchema: {
         user_id: z
           .string()
           .describe("The Slack user ID to look up (e.g. U01234ABCDE)"),
+      },
+      annotations: {
+        readOnlyHint: true,
       },
       _meta: {
         slack: {
