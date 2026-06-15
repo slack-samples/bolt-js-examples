@@ -1,6 +1,6 @@
 # External Auth
 
-Connect a remote MCP server with manual OAuth provider configuration.
+Connect a remote MCP server to the Slackbot MCP client with manual OAuth provider configuration.
 
 ## Setup
 
