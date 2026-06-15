@@ -8,8 +8,8 @@ Run an unauthenticated MCP server for the Slackbot MCP client that responds with
 $ ngrok http 3000  # Update manifest with these values
 $ slack manifest   # Review values
 $ slack install --environment local  # Create a new app
-$ slack app settings
-$ slack env set SLACK_SIGNING_SECRET placeholder
+$ slack app settings                 # Gather signing secret
+$ slack env set SLACK_SIGNING_SECRET
 $ slack run
 ```
 
