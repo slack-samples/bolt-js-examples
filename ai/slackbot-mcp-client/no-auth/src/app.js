@@ -20,7 +20,7 @@ const RESOURCE_URI = "ui://dice-roller/dice.html";
  * @see {@link https://github.com/modelcontextprotocol/typescript-sdk#getting-started}
  */
 function createServer() {
-  const server = new McpServer({ name: "no-auth-example", version: "1.0.0" });
+  const server = new McpServer({ name: "Dice Game", version: "1.0.0" });
 
   registerAppTool(
     server,

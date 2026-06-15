@@ -42,7 +42,7 @@
     }
   },
   "mcp_servers": {
-    "github": {
+    "GitHub": {
       "url": "https://api.githubcopilot.com/mcp/",
       "auth_type": "manual_auth",
       "auth_provider_key": "github"

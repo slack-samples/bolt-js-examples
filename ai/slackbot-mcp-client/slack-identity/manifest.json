@@ -23,7 +23,7 @@
     "token_rotation_enabled": false
   },
   "mcp_servers": {
-    "profile": {
+    "Profile Card": {
       "url": "https://1234-56-78-90-0.ngrok-free.app/mcp",
       "auth_type": "slack_identity_auth"
     }

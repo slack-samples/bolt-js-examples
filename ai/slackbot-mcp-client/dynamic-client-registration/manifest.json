@@ -20,7 +20,7 @@
     "token_rotation_enabled": false
   },
   "mcp_servers": {
-    "notion": {
+    "Notion": {
       "url": "https://mcp.notion.com/mcp",
       "auth_type": "dynamic_client_registration"
     }
