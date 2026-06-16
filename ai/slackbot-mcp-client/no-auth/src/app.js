@@ -39,7 +39,9 @@ function createServer() {
         readOnlyHint: true,
       },
       _meta: {
-        ui: { resourceUri: RESOURCE_URI },
+        ui: {
+          resourceUri: RESOURCE_URI,
+        },
       },
     },
     async ({ sides, count }) => {
