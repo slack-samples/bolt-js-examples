@@ -1,50 +1,21 @@
 import * as assert from "node:assert";
 import crypto from "node:crypto";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { after, before, describe, it } from "node:test";
 import nock from "nock";
 
 const SIGNING_SECRET = "test_signing_secret_for_testing";
-const TEAM_ID = "T0001";
-const USER_ID = "U0001";
-const BOT_TOKEN = "xoxb-test-bot-token";
 
 describe("mcp", () => {
   let app;
   let port;
 
   before(async () => {
-    process.env.SLACK_CLIENT_ID = "111.222";
-    process.env.SLACK_CLIENT_SECRET = "test_client_secret";
+    process.env.SLACK_BOT_TOKEN = "xoxb-test-token";
     process.env.SLACK_SIGNING_SECRET = SIGNING_SECRET;
-    process.env.SLACK_STATE_SECRET = "test_state_secret";
-    process.env.BASE_URL = "http://localhost:3000";
-
-    mkdirSync(`./installations/${TEAM_ID}`, { recursive: true });
-    writeFileSync(
-      `./installations/${TEAM_ID}/app-latest`,
-      JSON.stringify({
-        team: { id: TEAM_ID },
-        user: { id: USER_ID, token: "xoxp-user" },
-        bot: { id: "B0001", token: BOT_TOKEN, userId: "U0002" },
-      }),
-    );
 
     nock("https://slack.com")
-      .post("/api/users.info")
-      .reply(200, {
-        ok: true,
-        user: {
-          id: USER_ID,
-          profile: {
-            real_name: "Test User",
-            title: "VIP",
-            email: "test@example.com",
-            image_72:
-              "https://avatars.slack-edge.com/2026-01-01/123456_abc123def456_72.jpg",
-          },
-        },
-      });
+      .post("/api/auth.test")
+      .reply(200, { ok: true, bot_id: "B0101", user_id: "U0123" });
 
     const mod = await import("../src/app.js");
     app = mod.app;
@@ -54,15 +25,11 @@ describe("mcp", () => {
 
   after(async () => {
     await app.stop();
-    rmSync("./installations", { recursive: true, force: true });
-    delete process.env.SLACK_CLIENT_ID;
-    delete process.env.SLACK_CLIENT_SECRET;
+    delete process.env.SLACK_BOT_TOKEN;
     delete process.env.SLACK_SIGNING_SECRET;
-    delete process.env.SLACK_STATE_SECRET;
-    delete process.env.BASE_URL;
   });
 
-  it("returns tool call response", async () => {
+  it("returns tool call results", async () => {
     const initBody = JSON.stringify({
       jsonrpc: "2.0",
       id: 1,
@@ -92,16 +59,8 @@ describe("mcp", () => {
       id: 2,
       method: "tools/call",
       params: {
-        name: "get_profile_card",
-        arguments: {
-          user_id: USER_ID,
-        },
-        _meta: {
-          slack: {
-            user_id: USER_ID,
-            team_id: TEAM_ID,
-          },
-        },
+        name: "roll_dice",
+        arguments: { sides: 6, count: 2 },
       },
     });
 
@@ -120,30 +79,23 @@ describe("mcp", () => {
 
     const text = await res.text();
     const json = parseSSE(text);
-    const content = json.result.content[0].text;
+    const { structuredContent } = json.result;
 
-    assert.ok(content.includes("Test User"));
-    assert.ok(content.includes("VIP"));
-    assert.ok(content.includes("test@example.com"));
+    assert.strictEqual(structuredContent.sides, 6);
+    assert.strictEqual(structuredContent.count, 2);
+    assert.strictEqual(structuredContent.rolls.length, 2);
+    assert.strictEqual(
+      structuredContent.total,
+      structuredContent.rolls[0] + structuredContent.rolls[1],
+    );
   });
 
-  it("requires team installation", async () => {
+  it("serves ui resources", async () => {
     const body = JSON.stringify({
       jsonrpc: "2.0",
       id: 3,
-      method: "tools/call",
-      params: {
-        name: "get_profile_card",
-        arguments: {
-          user_id: "U9999",
-        },
-        _meta: {
-          slack: {
-            user_id: "U9999",
-            team_id: "T9999",
-          },
-        },
-      },
+      method: "resources/read",
+      params: { uri: "ui://dice-roller/dice.html" },
     });
 
     const sig = signRequest(body);
@@ -161,10 +113,11 @@ describe("mcp", () => {
 
     const text = await res.text();
     const json = parseSSE(text);
-    const content = json.result.content[0].text;
+    const resource = json.result.contents[0];
 
-    assert.ok(content.includes("not installed"));
-    assert.ok(content.includes("/slack/install"));
+    assert.strictEqual(resource.uri, "ui://dice-roller/dice.html");
+    assert.strictEqual(resource.mimeType, "text/html;profile=mcp-app");
+    assert.ok(resource.text.includes("Dice Roller"));
   });
 
   it("rejects unsigned requests", async () => {
@@ -172,7 +125,7 @@ describe("mcp", () => {
       jsonrpc: "2.0",
       id: 1,
       method: "tools/call",
-      params: { name: "get_profile_card", arguments: { user_id: "U999" } },
+      params: { name: "roll_dice", arguments: {} },
     });
 
     const res = await fetch(`http://localhost:${port}/mcp`, {

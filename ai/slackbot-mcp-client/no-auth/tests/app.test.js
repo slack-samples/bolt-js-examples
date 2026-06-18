@@ -79,45 +79,9 @@ describe("mcp", () => {
 
     const text = await res.text();
     const json = parseSSE(text);
-    const { structuredContent } = json.result;
+    const content = json.result.content[0].text;
 
-    assert.strictEqual(structuredContent.sides, 6);
-    assert.strictEqual(structuredContent.count, 2);
-    assert.strictEqual(structuredContent.rolls.length, 2);
-    assert.strictEqual(
-      structuredContent.total,
-      structuredContent.rolls[0] + structuredContent.rolls[1],
-    );
-  });
-
-  it("serves ui resources", async () => {
-    const body = JSON.stringify({
-      jsonrpc: "2.0",
-      id: 3,
-      method: "resources/read",
-      params: { uri: "ui://dice-roller/dice.html" },
-    });
-
-    const sig = signRequest(body);
-    const res = await fetch(`http://localhost:${port}/mcp`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json, text/event-stream",
-        "x-slack-request-timestamp": sig.timestamp,
-        "x-slack-signature": sig.signature,
-      },
-      body,
-    });
-    assert.strictEqual(res.status, 200);
-
-    const text = await res.text();
-    const json = parseSSE(text);
-    const resource = json.result.contents[0];
-
-    assert.strictEqual(resource.uri, "ui://dice-roller/dice.html");
-    assert.strictEqual(resource.mimeType, "text/html;profile=mcp-app");
-    assert.ok(resource.text.includes("Dice Roller"));
+    assert.ok(content.includes("Rolled 2d6:"));
   });
 
   it("rejects unsigned requests", async () => {

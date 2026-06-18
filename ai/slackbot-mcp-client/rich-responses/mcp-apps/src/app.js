@@ -1,16 +1,29 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import {
+  RESOURCE_MIME_TYPE,
+  registerAppResource,
+  registerAppTool,
+} from "@modelcontextprotocol/ext-apps/server";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { App, isValidSlackRequest, LogLevel } from "@slack/bolt";
 import { z } from "zod";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DICE_HTML = readFileSync(join(__dirname, "dice.html"), "utf-8");
+const RESOURCE_URI = "ui://dice-roller/dice.html";
+
 /**
- * Creates an MCP server with a dice roller tool.
+ * Creates an MCP server with a dice roller tool and UI resource.
  * @see {@link https://github.com/modelcontextprotocol/typescript-sdk#getting-started}
  */
 function createServer() {
   const server = new McpServer({ name: "Dice Game", version: "1.0.0" });
 
-  server.registerTool(
+  registerAppTool(
+    server,
     "roll_dice",
     {
       title: "Roll Dice",
@@ -24,6 +37,11 @@ function createServer() {
       },
       annotations: {
         readOnlyHint: true,
+      },
+      _meta: {
+        ui: {
+          resourceUri: RESOURCE_URI,
+        },
       },
     },
     async ({ sides, count }) => {
@@ -42,8 +60,36 @@ function createServer() {
             text: `Rolled ${label}:${rollsDisplay} = ${total}`,
           },
         ],
+        structuredContent: { sides, count, rolls, total },
       };
     },
+  );
+
+  registerAppResource(
+    server,
+    "Dice Roller",
+    RESOURCE_URI,
+    {
+      mimeType: RESOURCE_MIME_TYPE,
+      description: "Interactive dice roller UI",
+    },
+    async () => ({
+      contents: [
+        {
+          uri: RESOURCE_URI,
+          mimeType: RESOURCE_MIME_TYPE,
+          text: DICE_HTML,
+          _meta: {
+            ui: {
+              csp: {
+                resourceDomains: ["https://esm.sh"],
+                connectDomains: ["https://esm.sh"],
+              },
+            },
+          },
+        },
+      ],
+    }),
   );
 
   return server;

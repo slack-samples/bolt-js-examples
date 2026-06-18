@@ -34,11 +34,6 @@ function createServer(client, installationStore, logger) {
       annotations: {
         readOnlyHint: true,
       },
-      _meta: {
-        slack: {
-          supportsBlockKit: true,
-        },
-      },
     },
     async ({ user_id }, { _meta }) => {
       /** @type {SlackIdentity | undefined} */
@@ -73,31 +68,9 @@ function createServer(client, installationStore, logger) {
           content: [
             {
               type: "text",
-              text: "App not installed to this workspace. Please install first.",
+              text: `App not installed to this workspace. Please install first: ${process.env.BASE_URL}/slack/install`,
             },
           ],
-          _meta: {
-            slack: {
-              blocks: [
-                {
-                  type: "section",
-                  text: {
-                    type: "mrkdwn",
-                    text: "Please install the *MCP Profile Card* app to access profile information.",
-                  },
-                  accessory: {
-                    type: "button",
-                    text: {
-                      type: "plain_text",
-                      text: "Install",
-                    },
-                    url: `${process.env.BASE_URL}/slack/install`,
-                    action_id: "install_app",
-                  },
-                },
-              ],
-            },
-          },
         };
       }
 
@@ -134,32 +107,6 @@ function createServer(client, installationStore, logger) {
             ].join("\n"),
           },
         ],
-        _meta: {
-          slack: {
-            blocks: [
-              {
-                type: "card",
-                icon: {
-                  type: "image",
-                  image_url: profile.image_72,
-                  alt_text: profile.real_name,
-                },
-                title: {
-                  type: "mrkdwn",
-                  text: profile.real_name,
-                },
-                subtitle: {
-                  type: "mrkdwn",
-                  text: profile.title,
-                },
-                body: {
-                  type: "mrkdwn",
-                  text: `*Email:* ${profile.email}`,
-                },
-              },
-            ],
-          },
-        },
       };
     },
   );
