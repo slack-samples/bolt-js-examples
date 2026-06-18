@@ -5,6 +5,30 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
+    directory: "ai/slackbot-mcp-client/no-auth"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "@types/node"
+        versions:
+          - "25.x"
+  - package-ecosystem: "npm"
+    directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "@types/node"
+        versions:
+          - "25.x"
+  - package-ecosystem: "npm"
+    directory: "ai/slackbot-mcp-client/slack-identity"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "@types/node"
+        versions:
+          - "25.x"
+  - package-ecosystem: "npm"
     directory: "block-kit"
     schedule:
       interval: "daily"
