@@ -13,7 +13,7 @@ updates:
         versions:
           - "25.x"
   - package-ecosystem: "npm"
-    directory: "ai/slackbot-mcp-client/slack-identity"
+    directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
     schedule:
       interval: "daily"
     ignore:
@@ -21,7 +21,7 @@ updates:
         versions:
           - "25.x"
   - package-ecosystem: "npm"
-    directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
+    directory: "ai/slackbot-mcp-client/slack-identity"
     schedule:
       interval: "daily"
     ignore:
