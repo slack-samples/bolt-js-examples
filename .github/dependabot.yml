@@ -12,6 +12,7 @@ updates:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
     schedule:
@@ -20,6 +21,7 @@ updates:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/slack-identity"
     schedule:
@@ -28,6 +30,7 @@ updates:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "block-kit"
     schedule:
@@ -36,3 +39,4 @@ updates:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
