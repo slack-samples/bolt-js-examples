@@ -1,74 +1,22 @@
 /**
  * Displays a chart that visualizes a set of data.
  *
- * The `data_visualization` block is net-new and is not yet part of the
- * published `@slack/types` definitions, so the block shape is described with
- * local typedefs below until the SDK ships a `DataVisualizationBlock` type.
+ * The `data_visualization` block is net-new and depends on the
+ * `DataVisualizationBlock` type shipping from `@slack/types`. The import below
+ * is written as if that type is already published; once the SDK release lands,
+ * these examples type-check without any local changes.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/data-visualization-block/}
  */
 
 /**
- * A single slice of a pie chart.
- *
- * @typedef {Object} DataVisualizationSegment
- * @property {string} label - The name shown for the segment.
- * @property {number} value - The numeric value of the segment.
- */
-
-/**
- * A single data point within a series.
- *
- * @typedef {Object} DataVisualizationDataPoint
- * @property {string} label - The name shown for the data point.
- * @property {number} value - The numeric value of the data point.
- */
-
-/**
- * A named collection of data points used by bar, area, and line charts.
- *
- * @typedef {Object} DataVisualizationSeries
- * @property {string} name - The name shown for the series.
- * @property {DataVisualizationDataPoint[]} data - The data points of the series.
- */
-
-/**
- * Axis labels and categories used by bar, area, and line charts.
- *
- * @typedef {Object} DataVisualizationAxisConfig
- * @property {string[]} categories - The categories plotted along the x-axis.
- * @property {string} x_label - The label shown for the x-axis.
- * @property {string} y_label - The label shown for the y-axis.
- */
-
-/**
- * The chart rendered by a data visualization block.
- *
- * @typedef {Object} DataVisualizationChart
- * @property {"pie" | "bar" | "area" | "line"} type - The kind of chart to render.
- * @property {DataVisualizationSegment[]} [segments] - The slices of a pie chart.
- * @property {DataVisualizationSeries[]} [series] - The series of a bar, area, or line chart.
- * @property {DataVisualizationAxisConfig} [axis_config] - The axes of a bar, area, or line chart.
- */
-
-/**
- * A block that visualizes data as a chart.
- *
- * @typedef {Object} DataVisualizationBlock
- * @property {"data_visualization"} type - The type of block.
- * @property {string} title - The title shown above the chart, up to 50 characters.
- * @property {DataVisualizationChart} chart - The chart to render.
- * @property {string} [block_id] - A unique identifier for the block.
- */
-
-/**
  * A pie chart that visualizes how segments contribute to a whole.
  *
- * @returns {DataVisualizationBlock}
+ * @returns {import('@slack/types').DataVisualizationBlock}
  */
 export function example01() {
   /**
-   * @type {DataVisualizationBlock}
+   * @type {import('@slack/types').DataVisualizationBlock}
    */
   const block = {
     type: "data_visualization",
@@ -89,11 +37,11 @@ export function example01() {
 /**
  * A bar chart that compares values across categories.
  *
- * @returns {DataVisualizationBlock}
+ * @returns {import('@slack/types').DataVisualizationBlock}
  */
 export function example02() {
   /**
-   * @type {DataVisualizationBlock}
+   * @type {import('@slack/types').DataVisualizationBlock}
    */
   const block = {
     type: "data_visualization",
@@ -131,11 +79,11 @@ export function example02() {
 /**
  * An area chart that visualizes multiple series over time.
  *
- * @returns {DataVisualizationBlock}
+ * @returns {import('@slack/types').DataVisualizationBlock}
  */
 export function example03() {
   /**
-   * @type {DataVisualizationBlock}
+   * @type {import('@slack/types').DataVisualizationBlock}
    */
   const block = {
     type: "data_visualization",
@@ -177,11 +125,11 @@ export function example03() {
 /**
  * A line chart that compares trends across multiple series.
  *
- * @returns {DataVisualizationBlock}
+ * @returns {import('@slack/types').DataVisualizationBlock}
  */
 export function example04() {
   /**
-   * @type {DataVisualizationBlock}
+   * @type {import('@slack/types').DataVisualizationBlock}
    */
   const block = {
     type: "data_visualization",
