@@ -23,9 +23,7 @@ describe("blocks.validate", () => {
 
     assert.strictEqual(fetchMock.mock.callCount(), 1);
     const [url, init] = fetchMock.mock.calls[0].arguments;
-
     assert.strictEqual(String(url), "https://slack.com/api/blocks.validate");
-
     assert.ok(init);
     assert.deepStrictEqual(
       Object.fromEntries(new URLSearchParams(String(init.body))),
