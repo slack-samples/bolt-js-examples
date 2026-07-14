@@ -6,7 +6,7 @@ describe("blocks.validate", () => {
     mock.restoreAll();
   });
 
-  it("sends the expected request", async () => {
+  it("sends", async () => {
     process.env.SLACK_TOKEN = "xoxb-test";
 
     const fetchMock = mock.method(
@@ -29,7 +29,13 @@ describe("blocks.validate", () => {
 
     const params = Object.fromEntries(new URLSearchParams(String(init.body)));
     const expectedBlocks = JSON.stringify([
-      { type: "section", text: { type: "plain_text", text: "Hello world" } },
+      {
+        type: "section",
+        text: {
+          type: "plain_text",
+          text: "Hello world",
+        },
+      },
     ]);
     assert.deepStrictEqual(params, {
       blocks: expectedBlocks,

@@ -6,7 +6,7 @@ describe("chat.postMessage", () => {
     mock.restoreAll();
   });
 
-  it("sends the expected request", async () => {
+  it("sends", async () => {
     process.env.SLACK_TOKEN = "xoxb-test";
 
     const fetchMock = mock.method(
