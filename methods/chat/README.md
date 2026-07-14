@@ -1,18 +1,18 @@
 # chat
 
-Methods for sending and managing messages.
+Send and manage messages.
 
-## Required scopes
+Read the [docs](https://docs.slack.dev/reference/methods#chat) to explore more methods in the `chat` family.
 
-| Method | Token type | Scopes |
-| --- | --- | --- |
-| [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) | Bot | `chat:write` |
+## What's on display
 
-## Examples
+- **[chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage)**: Sends a message to a channel. [Implementation](./src/chat-post-message.js). Scopes: `chat:write`.
 
-- **[chat-post-message.js](./src/chat-post-message.js)** — posts a message to a channel with `chat.postMessage`.
+## Running an example
 
-Set a bot token and run:
+Set a bot token and run the script directly:
 
-    export SLACK_TOKEN="xoxb-your-token"
-    node chat/src/chat-post-message.js
+```sh
+export SLACK_TOKEN="xoxb-your-token"
+node chat/src/chat-post-message.js
+```

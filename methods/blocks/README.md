@@ -1,22 +1,20 @@
 # blocks
 
-Methods for validating Block Kit payloads.
+Validate Block Kit payloads.
 
-## Required scopes
+Read the [docs](https://docs.slack.dev/reference/methods#blocks) to explore more methods in the `blocks` family.
 
-| Method | Token type | Scopes |
-| --- | --- | --- |
-| [`blocks.validate`](https://docs.slack.dev/reference/methods/blocks.validate) | Any | None |
+## What's on display
 
-> **Note:** `blocks.validate` is not yet a typed method in `@slack/web-api`, so the
-> example uses the generic `client.apiCall(...)` escape hatch instead of a typed
-> `client.blocks.validate(...)` call.
+- **[blocks.validate](https://docs.slack.dev/reference/methods/blocks.validate)**: Validates Block Kit JSON payloads. [Implementation](./src/blocks-validate.js). Scopes: none.
 
-## Examples
+`blocks.validate` is not yet a typed method in `@slack/web-api`, so the example uses the generic `client.apiCall(...)` escape hatch instead of a typed `client.blocks.validate(...)` call.
 
-- **[blocks-validate.js](./src/blocks-validate.js)** — validates a Block Kit payload with `blocks.validate`.
+## Running an example
 
-Set a token and run:
+Set a token and run the script directly:
 
-    export SLACK_TOKEN="xoxb-your-token"
-    node blocks/src/blocks-validate.js
+```sh
+export SLACK_TOKEN="xoxb-your-token"
+node blocks/src/blocks-validate.js
+```
