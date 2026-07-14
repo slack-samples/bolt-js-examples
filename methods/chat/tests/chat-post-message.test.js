@@ -23,7 +23,7 @@ describe("chat.postMessage", () => {
 
     assert.strictEqual(fetchMock.mock.callCount(), 1);
     const [url, init] = fetchMock.mock.calls[0].arguments;
-    assert.ok(init, "fetch was called with a request init");
+    assert.ok(init);
 
     assert.strictEqual(String(url), "https://slack.com/api/chat.postMessage");
 

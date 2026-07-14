@@ -23,22 +23,21 @@ describe("blocks.validate", () => {
 
     assert.strictEqual(fetchMock.mock.callCount(), 1);
     const [url, init] = fetchMock.mock.calls[0].arguments;
-    assert.ok(init, "fetch was called with a request init");
+    assert.ok(init);
 
     assert.strictEqual(String(url), "https://slack.com/api/blocks.validate");
 
     const params = Object.fromEntries(new URLSearchParams(String(init.body)));
-    const expectedBlocks = JSON.stringify([
-      {
-        type: "section",
-        text: {
-          type: "plain_text",
-          text: "Hello world",
-        },
-      },
-    ]);
     assert.deepStrictEqual(params, {
-      blocks: expectedBlocks,
+      blocks: JSON.stringify([
+        {
+          type: "section",
+          text: {
+            type: "plain_text",
+            text: "Hello world",
+          },
+        },
+      ]),
     });
   });
 });
