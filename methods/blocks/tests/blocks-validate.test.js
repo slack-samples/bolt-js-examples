@@ -2,7 +2,6 @@ import * as assert from "node:assert";
 import { after, describe, it, mock } from "node:test";
 
 describe("blocks.validate", () => {
-  // Restore the patched global fetch once the suite finishes.
   after(() => {
     mock.restoreAll();
   });
@@ -10,8 +9,6 @@ describe("blocks.validate", () => {
   it("sends the expected request", async () => {
     process.env.SLACK_TOKEN = "xoxb-test";
 
-    // @slack/web-api v8 calls the native global fetch. Stub it and return a
-    // minimal successful Slack response so the SDK resolves cleanly.
     const fetchMock = mock.method(
       globalThis,
       "fetch",
@@ -22,17 +19,14 @@ describe("blocks.validate", () => {
         }),
     );
 
-    // The example fires its API call as a side effect on import.
     await import("../src/blocks-validate.js");
 
     assert.strictEqual(fetchMock.mock.callCount(), 1);
     const [url, init] = fetchMock.mock.calls[0].arguments;
     assert.ok(init, "fetch was called with a request init");
 
-    // Exact URL — pins the method endpoint.
     assert.strictEqual(String(url), "https://slack.com/api/blocks.validate");
 
-    // Exact body — decode the url-encoded form and deep-equal the payload.
     const params = Object.fromEntries(new URLSearchParams(String(init.body)));
     const expectedBlocks = JSON.stringify([
       { type: "section", text: { type: "plain_text", text: "Hello world" } },
