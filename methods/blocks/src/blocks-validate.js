@@ -7,8 +7,6 @@ const token = process.env.SLACK_TOKEN;
 const client = new WebClient(token);
 
 // Call the blocks.validate method
-// blocks.validate is not yet a typed method in @slack/web-api, so use the
-// generic apiCall escape hatch instead of client.blocks.validate.
 await client.apiCall("blocks.validate", {
   blocks: JSON.stringify([
     {
