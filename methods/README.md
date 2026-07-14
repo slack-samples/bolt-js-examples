@@ -11,6 +11,10 @@ Examples are grouped by method family. Each family documents the OAuth scopes it
 
 ## What's on display
 
+### blocks
+
+- **[blocks.validate](https://docs.slack.dev/reference/methods/blocks.validate)**: Validates Block Kit JSON payloads. [Implementation](./blocks/src/blocks-validate.js). Scopes: none.
+
 ### chat
 
 - **[chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage)**: Sends a message to a channel. [Implementation](./chat/src/chat-post-message.js). Scopes: `chat:write`.
