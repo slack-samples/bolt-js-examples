@@ -1,0 +1,27 @@
+{
+  "$schema": "https://www.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx tsc -p tsconfig.json",
+    "lint": "npx @biomejs/biome check .",
+    "lint:fix": "npx @biomejs/biome check --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slack-samples/bolt-js-examples.git"
+  },
+  "author": "Slack Technologies, LLC",
+  "bugs": {
+    "url": "https://github.com/slack-samples/bolt-js-examples/issues"
+  },
+  "homepage": "https://github.com/slack-samples/bolt-js-examples/blob/main/methods/README.md",
+  "dependencies": {
+    "@slack/web-api": "8.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.3",
+    "@types/node": "^24.13.3",
+    "typescript": "^6.0.3"
+  }
+}
