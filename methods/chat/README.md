@@ -10,9 +10,15 @@ Read the [docs](https://docs.slack.dev/reference/methods#chat) to explore more m
 
 ## Running an example
 
-Create an app from [`manifest.json`](./manifest.json) — which requests only the scopes this family needs — then set a bot token and run the script directly:
+This family is a self-contained Slack CLI app whose [`manifest.json`](./manifest.json) requests only the scopes it needs (`chat:write`). From this directory, install the app and grab a bot token:
+
+```sh
+slack install
+```
+
+Then set the token and run the example directly:
 
 ```sh
 export SLACK_TOKEN="xoxb-your-token"
-node chat/src/chat-post-message.js
+node src/chat-post-message.js
 ```

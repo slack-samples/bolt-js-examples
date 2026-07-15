@@ -12,9 +12,15 @@ Read the [docs](https://docs.slack.dev/reference/methods#blocks) to explore more
 
 ## Running an example
 
-Create an app from [`manifest.json`](./manifest.json) — `blocks.validate` requires no scopes — then set a token and run the script directly:
+This family is a self-contained Slack CLI app whose [`manifest.json`](./manifest.json) requests no scopes (`blocks.validate` requires none). From this directory, install the app and grab a token:
+
+```sh
+slack install
+```
+
+Then set the token and run the example directly:
 
 ```sh
 export SLACK_TOKEN="xoxb-your-token"
-node blocks/src/blocks-validate.js
+node src/blocks-validate.js
 ```

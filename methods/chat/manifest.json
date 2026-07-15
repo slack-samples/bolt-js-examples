@@ -1,11 +1,11 @@
 {
   "display_information": {
-    "name": "Methods - chat",
-    "description": "Examples of calling chat Web API methods"
+    "name": "Slack API Methods",
+    "description": "Example implementations to call \"chat\" methods"
   },
   "features": {
     "bot_user": {
-      "display_name": "Methods - chat",
+      "display_name": "Slack API Methods",
       "always_online": true
     }
   },

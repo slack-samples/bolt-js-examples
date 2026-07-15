@@ -1,11 +1,11 @@
 {
   "display_information": {
-    "name": "Methods - blocks",
-    "description": "Examples of calling blocks Web API methods"
+    "name": "Slack API Methods",
+    "description": "Example implementations to call \"blocks\" methods"
   },
   "features": {
     "bot_user": {
-      "display_name": "Methods - blocks",
+      "display_name": "Slack API Methods",
       "always_online": true
     }
   },
