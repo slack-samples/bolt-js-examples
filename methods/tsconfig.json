@@ -6,13 +6,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "target": "es2022",
-    "types": [
-      "node"
-    ],
-    "skipLibCheck": false
+    "types": ["node"]
   },
-  "include": [
-    "**/src/**/*.js",
-    "**/tests/**/*.js"
-  ]
+  "include": ["**/src/**/*.js", "**/tests/**/*.js"]
 }
