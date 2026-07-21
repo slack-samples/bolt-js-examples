@@ -21,6 +21,7 @@ updates:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
     schedule:
