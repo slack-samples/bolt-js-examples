@@ -1,5 +1,5 @@
 /**
- * Displays a card, a container for related content with an optional image, title, body, and actions.
+ * Displays content in a card.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/card-block/}
  */
