@@ -140,31 +140,3 @@ export function example01() {
   };
   return block;
 }
-
-/**
- * A minimal carousel holding a single card with just a title and body.
- *
- * @returns {import('@slack/types').CarouselBlock}
- */
-export function example02() {
-  /**
-   * @type {import('@slack/types').CarouselBlock}
-   */
-  const block = {
-    type: "carousel",
-    elements: [
-      {
-        type: "card",
-        title: {
-          type: "mrkdwn",
-          text: "Severance",
-        },
-        body: {
-          type: "mrkdwn",
-          text: "The work is mysterious and important.",
-        },
-      },
-    ],
-  };
-  return block;
-}

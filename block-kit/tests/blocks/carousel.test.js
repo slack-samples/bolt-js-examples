@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import { example01, example02 } from "../../src/blocks/carousel.js";
+import { example01 } from "../../src/blocks/carousel.js";
 
 describe("carousel", () => {
   it("example01", () => {
@@ -127,27 +127,6 @@ describe("carousel", () => {
               action_id: "button_action_3",
             },
           ],
-        },
-      ],
-    };
-    assert.deepStrictEqual(block, expected);
-  });
-
-  it("example02", () => {
-    const block = example02();
-    const expected = {
-      type: "carousel",
-      elements: [
-        {
-          type: "card",
-          title: {
-            type: "mrkdwn",
-            text: "Severance",
-          },
-          body: {
-            type: "mrkdwn",
-            text: "The work is mysterious and important.",
-          },
         },
       ],
     };
