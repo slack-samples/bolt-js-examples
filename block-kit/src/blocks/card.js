@@ -54,33 +54,3 @@ export function example01() {
   };
   return block;
 }
-
-/**
- * A minimal card with only a title and an action button. At least one of
- * `hero_image`, `title`, `actions`, or `body` is required on a card.
- *
- * @returns {import('@slack/types').CardBlock}
- */
-export function example02() {
-  /**
-   * @type {import('@slack/types').CardBlock}
-   */
-  const block = {
-    type: "card",
-    title: {
-      type: "mrkdwn",
-      text: "Pick your refinement number",
-    },
-    actions: [
-      {
-        type: "button",
-        text: {
-          type: "plain_text",
-          text: "Refine",
-        },
-        action_id: "refine_action",
-      },
-    ],
-  };
-  return block;
-}

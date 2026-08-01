@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import { example01, example02 } from "../../src/blocks/card.js";
+import { example01 } from "../../src/blocks/card.js";
 
 describe("card", () => {
   it("example01", () => {
@@ -41,28 +41,6 @@ describe("card", () => {
             emoji: false,
           },
           action_id: "button_action",
-        },
-      ],
-    };
-    assert.deepStrictEqual(block, expected);
-  });
-
-  it("example02", () => {
-    const block = example02();
-    const expected = {
-      type: "card",
-      title: {
-        type: "mrkdwn",
-        text: "Pick your refinement number",
-      },
-      actions: [
-        {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: "Refine",
-          },
-          action_id: "refine_action",
         },
       ],
     };
