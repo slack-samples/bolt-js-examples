@@ -1,5 +1,5 @@
 /**
- * Displays tabular data with rows and columns.
+ * Displays structured information in a table.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/table-block/}
  */
