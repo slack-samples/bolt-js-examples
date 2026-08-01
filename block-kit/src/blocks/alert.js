@@ -1,5 +1,5 @@
 /**
- * Displays alerts, warnings, and informational messages within modals.
+ * Displays alerts, warnings, and informational messages.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/alert-block/}
  */
