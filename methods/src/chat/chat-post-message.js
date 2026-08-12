@@ -1,6 +1,6 @@
 import { WebClient } from "@slack/web-api";
 
-// Read a token from the environment variables
+// Read a token from an environment variable
 const token = process.env.SLACK_TOKEN;
 
 // Initialize
