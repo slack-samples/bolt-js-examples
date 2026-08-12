@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "npx tsc -p tsconfig.json",
+    "check": "npx tsc --checkJs --noEmit --types node src/**/*.js",
     "lint": "npx @biomejs/biome check .",
     "lint:fix": "npx @biomejs/biome check --write ."
   },

@@ -1,9 +1,21 @@
 # Methods
 
-Individual Slack Web API method calls with the `@slack/web-api` client.
+An interface for querying information from and enacting change in a Slack workspace.
 
-Read the [docs](https://docs.slack.dev/reference/methods) to explore every method, or explore implementations of specific families.
+Read the [docs](https://docs.slack.dev/apis/web-api/) for explanations of concepts, or explore [reference](https://docs.slack.dev/reference/methods) pages for specific functionalities.
 
-## What's on display
+## Making a request
 
-- **[chat](chat/)**: Send and manage messages. [Implementation](./chat/).
+```sh
+$ cd src/chat  # Navigate to a method family
+$ slack install --environment local  # Create an app
+$ vim chat-post-message.js  # Edit arguments
+$ export SLACK_TOKEN=xoxb-example  # Set if unchanged
+$ slack run chat-post-message.js  # Make the request
+```
+
+## What's on call
+
+### chat
+
+- **[chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage)**: Sends a message to a channel. [Implementation](./src/chat/chat-post-message.js).
