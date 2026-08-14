@@ -16,6 +16,7 @@ jobs:
           - "ai/slackbot-mcp-client/rich-responses/mcp-apps"
           - "ai/slackbot-mcp-client/slack-identity"
           - "block-kit"
+          - "methods"
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -29,4 +30,4 @@ jobs:
           npm install
           npm run lint
           npm run check
-          npm run test
+          npm test --if-present
