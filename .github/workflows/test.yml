@@ -25,7 +25,10 @@ jobs:
         with:
           node-version: "24"
       - name: Run tests
+        shell: bash
         run: |
+          shopt -s globstar
+          export BASHOPTS npm_config_script_shell=bash
           cd "${{ matrix.showcase }}"
           npm install
           npm run lint
