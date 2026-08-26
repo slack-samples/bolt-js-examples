@@ -1,6 +1,6 @@
 import { WebClient } from "@slack/web-api";
 
-// Initialize (blocks.validate is unauthenticated, so no token is needed)
+// Initialize
 const client = new WebClient();
 
 // Call the blocks.validate method
