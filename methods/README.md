@@ -16,6 +16,10 @@ $ slack run chat-post-message.js  # Make the request
 
 ## What's on call
 
+### blocks
+
+- **[blocks.validate](https://docs.slack.dev/reference/methods/blocks.validate)**: Validates blocks, messages, and views Block Kit JSON payloads. [Implementation](./src/blocks/blocks-validate.js).
+
 ### chat
 
 - **[chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage)**: Sends a message to a channel. [Implementation](./src/chat/chat-post-message.js).
