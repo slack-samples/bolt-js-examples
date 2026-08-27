@@ -40,3 +40,12 @@ updates:
         versions:
           - "25.x"
           - "26.x"
+  - package-ecosystem: "npm"
+    directory: "methods"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "@types/node"
+        versions:
+          - "25.x"
+          - "26.x"
