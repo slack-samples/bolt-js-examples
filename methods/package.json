@@ -23,6 +23,6 @@
     "@biomejs/biome": "^2.5.10",
     "@slack/cli-hooks": "^2.0.0",
     "@types/node": "^24.13.3",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }
