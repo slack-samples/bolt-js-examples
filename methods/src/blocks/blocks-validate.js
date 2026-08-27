@@ -8,7 +8,10 @@ const response = await client.blocks.validate({
   blocks: [
     {
       type: "section",
-      text: { type: "plain_text", text: "Hello world" },
+      text: {
+        type: "plain_text",
+        text: "Hello world",
+      },
     },
   ],
 });
