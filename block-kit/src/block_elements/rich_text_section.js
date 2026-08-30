@@ -5,126 +5,92 @@
  */
 
 /**
- * A rich text block with a basic text section.
+ * Rich text blocks showing basic, bold, italic, and strikethrough text sections.
  *
- * @returns {import('@slack/types').RichTextBlock}
+ * @returns {import('@slack/types').RichTextBlock[]}
  */
 export function example01() {
   /**
-   * @type {import('@slack/types').RichTextBlock}
+   * @type {import('@slack/types').RichTextBlock[]}
    */
-  const block = {
-    type: "rich_text",
-    elements: [
-      {
-        type: "rich_text_section",
-        elements: [
-          {
-            type: "text",
-            text: "Hello there, I am a basic rich text block!",
-          },
-        ],
-      },
-    ],
-  };
-  return block;
-}
-
-/**
- * A rich text block with a bold styled text section.
- *
- * @returns {import('@slack/types').RichTextBlock}
- */
-export function example02() {
-  /**
-   * @type {import('@slack/types').RichTextBlock}
-   */
-  const block = {
-    type: "rich_text",
-    elements: [
-      {
-        type: "rich_text_section",
-        elements: [
-          {
-            type: "text",
-            text: "Hello there, ",
-          },
-          {
-            type: "text",
-            text: "I am a bold rich text block!",
-            style: {
-              bold: true,
+  const blocks = [
+    {
+      type: "rich_text",
+      elements: [
+        {
+          type: "rich_text_section",
+          elements: [
+            {
+              type: "text",
+              text: "Hello there, I am a basic rich text block!",
             },
-          },
-        ],
-      },
-    ],
-  };
-  return block;
-}
-
-/**
- * A rich text block with an italic styled text section.
- *
- * @returns {import('@slack/types').RichTextBlock}
- */
-export function example03() {
-  /**
-   * @type {import('@slack/types').RichTextBlock}
-   */
-  const block = {
-    type: "rich_text",
-    elements: [
-      {
-        type: "rich_text_section",
-        elements: [
-          {
-            type: "text",
-            text: "Hello there, ",
-          },
-          {
-            type: "text",
-            text: "I am an italic rich text block!",
-            style: {
-              italic: true,
+          ],
+        },
+      ],
+    },
+    {
+      type: "rich_text",
+      elements: [
+        {
+          type: "rich_text_section",
+          elements: [
+            {
+              type: "text",
+              text: "Hello there, ",
             },
-          },
-        ],
-      },
-    ],
-  };
-  return block;
-}
-
-/**
- * A rich text block with a strikethrough styled text section.
- *
- * @returns {import('@slack/types').RichTextBlock}
- */
-export function example04() {
-  /**
-   * @type {import('@slack/types').RichTextBlock}
-   */
-  const block = {
-    type: "rich_text",
-    elements: [
-      {
-        type: "rich_text_section",
-        elements: [
-          {
-            type: "text",
-            text: "Hello there, ",
-          },
-          {
-            type: "text",
-            text: "I am a strikethrough rich text block!",
-            style: {
-              strike: true,
+            {
+              type: "text",
+              text: "I am a bold rich text block!",
+              style: {
+                bold: true,
+              },
             },
-          },
-        ],
-      },
-    ],
-  };
-  return block;
+          ],
+        },
+      ],
+    },
+    {
+      type: "rich_text",
+      elements: [
+        {
+          type: "rich_text_section",
+          elements: [
+            {
+              type: "text",
+              text: "Hello there, ",
+            },
+            {
+              type: "text",
+              text: "I am an italic rich text block!",
+              style: {
+                italic: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "rich_text",
+      elements: [
+        {
+          type: "rich_text_section",
+          elements: [
+            {
+              type: "text",
+              text: "Hello there, ",
+            },
+            {
+              type: "text",
+              text: "I am a strikethrough rich text block!",
+              style: {
+                strike: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  return blocks;
 }
