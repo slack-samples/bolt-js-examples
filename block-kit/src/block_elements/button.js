@@ -70,11 +70,6 @@ export function example03() {
 /**
  * The button element used inside either the section or actions block.
  *
- * The docs reference's fourth payload (a button with `agent_prompt` that hands
- * off to Slackbot) is deferred: `@slack/types` does not yet include the
- * `agent_prompt` field, so this file skips from `example03` to `example05` to
- * keep the numbering aligned with the docs reference.
- *
  * @returns {(import('@slack/types').SectionBlock | import('@slack/types').ActionsBlock)[]}
  */
 export function example05() {
