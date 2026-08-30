@@ -31,7 +31,7 @@ export function example01() {
 }
 
 /**
- * A section block with an image accessory using slack_file with a url.
+ * An image block using slack_file with a url.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
@@ -58,7 +58,7 @@ export function example02() {
 }
 
 /**
- * A section block with an image accessory using slack_file with an id.
+ * An image block using slack_file with a id.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
