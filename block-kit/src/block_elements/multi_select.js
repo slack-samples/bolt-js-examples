@@ -5,7 +5,7 @@
  */
 
 /**
- * A section block with a static multi-select menu accessory.
+ * A section block containing a static multi-select menu.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
@@ -56,7 +56,7 @@ export function example01() {
 }
 
 /**
- * A section block with an external multi-select menu accessory.
+ * A multi-select menu in a section block with an external data source.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
@@ -85,7 +85,7 @@ export function example02() {
 }
 
 /**
- * A section block with a users multi-select menu accessory.
+ * A multi-select menu in a section block showing a list of users.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
@@ -113,7 +113,7 @@ export function example03() {
 }
 
 /**
- * A section block with a conversations multi-select menu accessory.
+ * A multi-select menu in a section block showing a list of conversations.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
@@ -141,7 +141,7 @@ export function example04() {
 }
 
 /**
- * A section block with a channels multi-select menu accessory.
+ * A multi-select menu in a section block showing a list of channels.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
