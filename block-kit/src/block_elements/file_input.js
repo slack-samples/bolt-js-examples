@@ -1,5 +1,5 @@
 /**
- * Allows users to upload files.
+ * Allows user to upload files.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/block-elements/file-input-element/}
  */

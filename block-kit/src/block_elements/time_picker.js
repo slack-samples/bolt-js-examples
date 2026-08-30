@@ -1,5 +1,5 @@
 /**
- * A time picker element; on desktop a dropdown with free-text entry, on mobile the native time picker UI.
+ * Allows users to enter numerical data into a single-line field.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/block-elements/time-picker-element/}
  */
