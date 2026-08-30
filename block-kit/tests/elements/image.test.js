@@ -1,10 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import {
-  example01,
-  example02,
-  example03,
-} from "../../src/elements/image.js";
+import { example01, example02, example03 } from "../../src/elements/image.js";
 
 describe("image", () => {
   it("example01", () => {

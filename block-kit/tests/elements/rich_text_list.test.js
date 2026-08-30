@@ -1,9 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import {
-  example01,
-  example02,
-} from "../../src/elements/rich_text_list.js";
+import { example01, example02 } from "../../src/elements/rich_text_list.js";
 
 describe("rich_text_list", () => {
   it("example01", () => {
