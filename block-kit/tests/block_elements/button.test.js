@@ -4,7 +4,7 @@ import {
   example01,
   example02,
   example03,
-  example04,
+  example05,
 } from "../../src/block_elements/button.js";
 
 describe("button", () => {
@@ -50,8 +50,8 @@ describe("button", () => {
     assert.deepStrictEqual(element, expected);
   });
 
-  it("example04", () => {
-    const blocks = example04();
+  it("example05", () => {
+    const blocks = example05();
     const expected = [
       {
         type: "section",
