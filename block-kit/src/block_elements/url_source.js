@@ -1,5 +1,5 @@
 /**
- * Displays a URL source with optional icon.
+ * Displays a URL source for referencing within a task card block.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/block-elements/url-source-element/}
  */
