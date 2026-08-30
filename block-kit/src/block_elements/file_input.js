@@ -5,27 +5,47 @@
  */
 
 /**
- * An input block with a file input element, as shown hosted in a modal.
+ * A modal view with a file input element hosted in an input block.
  *
- * @returns {import('@slack/types').InputBlock}
+ * @returns {import('@slack/types').View}
  */
 export function example01() {
   /**
-   * @type {import('@slack/types').InputBlock}
+   * @type {import('@slack/types').View}
    */
-  const block = {
-    type: "input",
-    block_id: "input_block_id",
-    label: {
+  const view = {
+    title: {
       type: "plain_text",
-      text: "Upload Files",
+      text: "My App",
+      emoji: true,
     },
-    element: {
-      type: "file_input",
-      action_id: "file_input_action_id_1",
-      filetypes: ["jpg", "png"],
-      max_files: 5,
+    submit: {
+      type: "plain_text",
+      text: "Submit",
+      emoji: true,
     },
+    type: "modal",
+    close: {
+      type: "plain_text",
+      text: "Cancel",
+      emoji: true,
+    },
+    blocks: [
+      {
+        type: "input",
+        block_id: "input_block_id",
+        label: {
+          type: "plain_text",
+          text: "Upload Files",
+        },
+        element: {
+          type: "file_input",
+          action_id: "file_input_action_id_1",
+          filetypes: ["jpg", "png"],
+          max_files: 5,
+        },
+      },
+    ],
   };
-  return block;
+  return view;
 }
