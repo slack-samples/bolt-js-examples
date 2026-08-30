@@ -5,7 +5,7 @@
  */
 
 /**
- * A regular button.
+ * A regular interactive button.
  *
  * @returns {import('@slack/types').Button}
  */
@@ -26,7 +26,7 @@ export function example01() {
 }
 
 /**
- * A button with a primary style.
+ * A button with a primary style attribute.
  *
  * @returns {import('@slack/types').Button}
  */
@@ -48,7 +48,7 @@ export function example02() {
 }
 
 /**
- * A button that opens a link.
+ * A link button.
  *
  * @returns {import('@slack/types').Button}
  */
@@ -68,7 +68,7 @@ export function example03() {
 }
 
 /**
- * A section block with a button accessory alongside an actions block of buttons.
+ * The button element used inside either the section or actions block.
  *
  * The docs reference's fourth payload (a button with `agent_prompt` that hands
  * off to Slackbot) is deferred: `@slack/types` does not yet include the
