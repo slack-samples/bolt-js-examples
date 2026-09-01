@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import {
   example01,
   example02,
-} from "../../src/composition_objects/slack_file.js";
+} from "../../src/compositions/slack_file.js";
 
 describe("slack_file", () => {
   it("example01", () => {

@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import { example01 } from "../../src/composition_objects/confirmation_dialog.js";
+import { example01 } from "../../src/compositions/confirmation_dialog.js";
 
 describe("confirmation_dialog", () => {
   it("example01", () => {

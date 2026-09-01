@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import { example01 } from "../../src/composition_objects/dispatch_action_configuration.js";
+import { example01 } from "../../src/compositions/dispatch_action_configuration.js";
 
 describe("dispatch_action_configuration", () => {
   it("example01", () => {

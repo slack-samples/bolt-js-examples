@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import { example01 } from "../../src/composition_objects/conversation_filter.js";
+import { example01 } from "../../src/compositions/conversation_filter.js";
 
 describe("conversation_filter", () => {
   it("example01", () => {

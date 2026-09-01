@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import { example01 } from "../../src/composition_objects/option_group.js";
+import { example01 } from "../../src/compositions/option_group.js";
 
 describe("option_group", () => {
   it("example01", () => {
