@@ -5,7 +5,7 @@
  */
 
 /**
- * Option groups hosted in a static select menu accessory across a search result layout.
+ * A static select menu containing the option group object.
  *
  * @returns {(import('@slack/types').SectionBlock | import('@slack/types').DividerBlock)[]}
  */
