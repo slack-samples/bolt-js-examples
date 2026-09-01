@@ -25,7 +25,7 @@ export function example01() {
 }
 
 /**
- * Options hosted in a static select menu accessory across a search result layout.
+ * A static select menu element with several option objects.
  *
  * @returns {(import('@slack/types').SectionBlock | import('@slack/types').DividerBlock)[]}
  */
