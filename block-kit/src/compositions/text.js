@@ -5,7 +5,7 @@
  */
 
 /**
- * A section block hosting an mrkdwn text object.
+ * A section block containing a text object.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
