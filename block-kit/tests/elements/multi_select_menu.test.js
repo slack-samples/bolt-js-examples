@@ -6,9 +6,9 @@ import {
   example03,
   example04,
   example05,
-} from "../../src/elements/multi_select.js";
+} from "../../src/elements/multi_select_menu.js";
 
-describe("multi_select", () => {
+describe("multi_select_menu", () => {
   it("example01", () => {
     const block = example01();
     const expected = {
