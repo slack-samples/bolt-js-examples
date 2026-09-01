@@ -5,7 +5,7 @@
  */
 
 /**
- * An image block hosting a Slack file object referenced by url.
+ * An image block containing a Slack file object referenced by url.
  *
  * @returns {import('@slack/types').ImageBlock}
  */
@@ -29,7 +29,7 @@ export function example01() {
 }
 
 /**
- * An image block hosting a Slack file object referenced by id.
+ * An image block containing a Slack file object referenced by id.
  *
  * @returns {import('@slack/types').ImageBlock}
  */
