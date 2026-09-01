@@ -1,9 +1,6 @@
 import * as assert from "node:assert";
 import { describe, it } from "node:test";
-import {
-  example01,
-  example02,
-} from "../../src/compositions/slack_file.js";
+import { example01, example02 } from "../../src/compositions/slack_file.js";
 
 describe("slack_file", () => {
   it("example01", () => {
