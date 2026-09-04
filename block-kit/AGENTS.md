@@ -1,4 +1,4 @@
-# Adding a Block Example
+# Adding an Example
 
 A block example is **code-complete** when all four of these are present:
 
