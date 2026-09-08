@@ -5,7 +5,7 @@
  */
 
 /**
- * A sample data table block
+ * A sample data table block.
  *
  * @returns {import('@slack/types').DataTableBlock}
  */
