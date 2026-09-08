@@ -1,11 +1,11 @@
 /**
- * Displays structured, paginated data in rows and columns.
+ * Displays rich tables that support pagination, sorting, filtering, and interactivity.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/data-table-block/}
  */
 
 /**
- * A data table of departments with rich text cells.
+ * A sample data table block
  *
  * @returns {import('@slack/types').DataTableBlock}
  */
