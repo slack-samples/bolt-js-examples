@@ -11,13 +11,13 @@
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.7.5",
     "@modelcontextprotocol/sdk": "^1.30.0",
-    "@slack/bolt": "^5.0.0",
-    "zod": "^4.4.3"
+    "@slack/bolt": "^5.1.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.10",
+    "@biomejs/biome": "^2.5.13",
     "@slack/cli-hooks": "^2.0.0",
-    "@types/node": "^24.13.3",
+    "@types/node": "^24.13.5",
     "nock": "^14.0.17",
     "typescript": "^7.0.2"
   }
