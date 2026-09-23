@@ -8,8 +8,10 @@ const client = new WebClient(token);
 
 // Call the agents.sessions.setStatus method
 const response = await client.agents.sessions.setStatus({
-  channel_id: "C123ABC456",
+  channel_id: "C123ABC",
+  thread_ts: "1717171717.123456",
   status: "processing",
+  title: "Scuba diving research",
 });
 
 // Inspect the response
