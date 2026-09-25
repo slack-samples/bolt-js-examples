@@ -8,7 +8,7 @@ const client = new WebClient(token);
 
 // Call the agents.conversations.listViews method
 const response = await client.agents.conversations.listViews({
-  channel_id: "C123ABC456",
+  channel_id: "C9876543210",
 });
 
 // Inspect the response

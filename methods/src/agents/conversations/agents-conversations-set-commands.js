@@ -8,15 +8,20 @@ const client = new WebClient(token);
 
 // Call the agents.conversations.setCommands method
 const response = await client.agents.conversations.setCommands({
-  channel_id: "C123ABC456",
+  channel_id: "C9876543210",
   commands: [
     {
-      name: "test",
-      description: "Run the test suite",
+      name: "create-pr",
+      description: "Open a pull request for the current branch",
+      argument_hint: "[title]",
     },
     {
-      name: "diff",
-      description: "Show the current diff",
+      name: "run-tests",
+      description: "Run the test suite and report back",
+    },
+    {
+      name: "summarize",
+      description: "Post a summary of the work so far",
     },
   ],
 });

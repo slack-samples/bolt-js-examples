@@ -8,8 +8,9 @@ const client = new WebClient(token);
 
 // Call the agents.conversations.getCanvas method
 const response = await client.agents.conversations.getCanvas({
-  channel: "C123ABC456",
-  canvas_id: "F123ABC456",
+  channel: "C9876543210",
+  canvas_id: "F1234567890",
+  include_resolved: false,
 });
 
 // Inspect the response

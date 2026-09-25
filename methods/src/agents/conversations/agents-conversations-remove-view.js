@@ -8,8 +8,8 @@ const client = new WebClient(token);
 
 // Call the agents.conversations.removeView method
 const response = await client.agents.conversations.removeView({
-  channel_id: "C123ABC456",
-  view_id: "V123ABC456",
+  channel_id: "C9876543210",
+  view_key: "reports/coverage.html",
 });
 
 // Inspect the response

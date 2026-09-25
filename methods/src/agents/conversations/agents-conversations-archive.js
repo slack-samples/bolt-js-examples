@@ -8,8 +8,8 @@ const client = new WebClient(token);
 
 // Call the agents.conversations.archive method
 const response = await client.agents.conversations.archive({
-  channel_id: "C123ABC456",
-  summary_message_ts: "1717171717.123456",
+  channel_id: "C9876543210",
+  summary_message_ts: "1717182000.456789",
 });
 
 // Inspect the response
