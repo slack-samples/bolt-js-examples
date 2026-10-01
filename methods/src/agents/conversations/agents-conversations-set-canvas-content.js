@@ -10,7 +10,8 @@ const client = new WebClient(token);
 const response = await client.agents.conversations.setCanvasContent({
   channel: "C9876543210",
   canvas_id: "F1234567890",
-  content: "# Migration plan\n\n1. Inventory cron jobs\n2. Port billing jobs last\n",
+  content:
+    "# Migration plan\n\n1. Inventory cron jobs\n2. Port billing jobs last\n",
 });
 
 // Inspect the response
