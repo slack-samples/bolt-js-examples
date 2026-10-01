@@ -9,7 +9,7 @@
     "test": "node --test"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@modelcontextprotocol/sdk": "^1.30.1",
     "@slack/bolt": "^5.1.0",
     "@slack/oauth": "^4.0.0",
     "zod": "^4.6.5"
