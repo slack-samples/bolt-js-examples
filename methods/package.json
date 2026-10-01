@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/slack-samples/bolt-js-examples/blob/main/methods/README.md",
   "dependencies": {
-    "@slack/web-api": "^8.1.1"
+    "@slack/web-api": "^8.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.14",
