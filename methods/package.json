@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/slack-samples/bolt-js-examples/blob/main/methods/README.md",
   "dependencies": {
-    "@slack/web-api": "^8.1.1"
+    "@slack/web-api": "^8.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.11",
+    "@biomejs/biome": "^2.5.14",
     "@slack/cli-hooks": "^2.0.0",
-    "@types/node": "^24.13.3",
+    "@types/node": "^24.13.6",
     "typescript": "^7.0.2"
   }
 }
