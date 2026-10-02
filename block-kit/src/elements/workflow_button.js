@@ -5,7 +5,7 @@
  */
 
 /**
- * A workflow button used as the accessory of a section block.
+ * A section block containing a workflow button element.
  *
  * @returns {import('@slack/types').SectionBlock}
  */

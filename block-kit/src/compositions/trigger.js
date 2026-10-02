@@ -5,7 +5,7 @@
  */
 
 /**
- * A trigger object inside the workflow of a workflow button.
+ * A section block with a workflow button whose trigger carries customizable input parameters.
  *
  * @returns {import('@slack/types').SectionBlock}
  */

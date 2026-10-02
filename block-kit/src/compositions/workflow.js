@@ -5,7 +5,7 @@
  */
 
 /**
- * A workflow object inside the accessory of a section block.
+ * A section block with a workflow button whose workflow carries a trigger.
  *
  * @returns {import('@slack/types').SectionBlock}
  */
