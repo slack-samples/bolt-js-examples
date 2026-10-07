@@ -9,8 +9,10 @@
     "test": "node --test"
   },
   "dependencies": {
+    "@modelcontextprotocol/client": "^2.3.0",
     "@modelcontextprotocol/ext-apps": "^2.0.3",
-    "@modelcontextprotocol/sdk": "^1.31.0",
+    "@modelcontextprotocol/node": "^2.1.1",
+    "@modelcontextprotocol/server": "^2.3.0",
     "@slack/bolt": "^5.1.0",
     "zod": "^4.6.5"
   },

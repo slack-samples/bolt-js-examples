@@ -6,8 +6,8 @@ import {
   registerAppResource,
   registerAppTool,
 } from "@modelcontextprotocol/ext-apps/server";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { NodeStreamableHTTPServerTransport } from "@modelcontextprotocol/node";
+import { McpServer } from "@modelcontextprotocol/server";
 import { App, isValidSlackRequest, LogLevel } from "@slack/bolt";
 import { z } from "zod";
 
@@ -28,13 +28,13 @@ function createServer() {
     {
       title: "Roll Dice",
       description: "Roll one or more dice with a configurable number of sides.",
-      inputSchema: {
+      inputSchema: z.object({
         sides: z
           .number()
           .default(6)
           .describe("Number of sides on each die (e.g., 6, 20)"),
         count: z.number().default(1).describe("Number of dice to roll"),
-      },
+      }),
       annotations: {
         readOnlyHint: true,
       },
@@ -133,7 +133,7 @@ export const app = new App({
 
         const body = JSON.parse(rawBody);
         const server = createServer();
-        const transport = new StreamableHTTPServerTransport({
+        const transport = new NodeStreamableHTTPServerTransport({
           sessionIdGenerator: undefined,
         });
         await server.connect(transport);
