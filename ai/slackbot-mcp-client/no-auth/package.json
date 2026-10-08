@@ -14,7 +14,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
+    "@biomejs/biome": "^2.5.15",
     "@slack/cli-hooks": "^2.0.0",
     "@types/node": "^24.19.0",
     "nock": "^14.0.17",
