@@ -9,7 +9,7 @@
     "test": "node --test"
   },
   "dependencies": {
-    "@modelcontextprotocol/client": "^2.3.0",
+    "@modelcontextprotocol/client": "^2.3.1",
     "@modelcontextprotocol/ext-apps": "^2.0.3",
     "@modelcontextprotocol/node": "^2.1.1",
     "@modelcontextprotocol/server": "^2.3.1",
