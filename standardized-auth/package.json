@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx tsc --checkJs --noEmit app.js",
+    "lint": "npx @biomejs/biome check .",
+    "lint:fix": "npx @biomejs/biome check --write .",
+    "start": "node app.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@slack/bolt": "^5.1.0",
+    "@slack/oauth": "^4.0.0",
+    "@slack/types": "^3.2.0",
+    "@slack/web-api": "^8.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@slack/cli-hooks": "^2.0.0",
+    "@types/node": "^24.19.1",
+    "nock": "^15.0.1",
+    "typescript": "^7.0.2"
+  }
+}
