@@ -6,11 +6,10 @@
     "lint": "npx @biomejs/biome check .",
     "lint:fix": "npx @biomejs/biome check --write .",
     "start": "node app.js",
-    "test": "node --test"
+    "test": "node --test --import ./tests/setup.js"
   },
   "dependencies": {
     "@slack/bolt": "^5.1.0",
-    "@slack/oauth": "^4.0.0",
     "@slack/types": "^3.2.0",
     "@slack/web-api": "^8.2.0"
   },

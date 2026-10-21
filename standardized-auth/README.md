@@ -6,26 +6,22 @@ Read the docs: https://docs.slack.dev/authentication/standardized-auth
 
 ## How it works
 
-Acme keeps every connection in Bolt's installation store: a user is connected when the store holds their user token.
+Acme runs over Socket Mode and keeps every connection in a local JSON file ([`src/connections.js`](./src/connections.js)): a user is connected when their Slack user ID is in it. The provider object and the App Home view live in [`src/acme.js`](./src/acme.js), and every listener and Slack API call lives in [`app.js`](./app.js).
 
-- **Connect** opens `/slack/install`. When the OAuth flow saves the user's token, the app reports the connection with `apps.user.connection.requestAuth` and refreshes App Home.
-- **Disconnect** forgets the user's token, reports the user as disconnected, then revokes the token.
+- **Connect** connects the Slack user who clicked it, with their user ID as the connected identity. It reports the connection with `apps.user.connection.requestAuth` and refreshes App Home.
+- **Connect** or **Manage** on the app's profile sends the `user_connection` event, and Acme answers within 3 seconds by opening the connection modal with `apps.user.connection.requestAuth` and the event's `trigger_id`.
+- **Disconnect** forgets the connection and reports the user as disconnected.
 - **`user_connection_status_requested`** answers with `apps.user.connection.update` whenever Slack asks about a user it doesn't know yet.
-- **`tokens_revoked`** forgets users who remove Acme from their Slack settings and reports them as disconnected.
 - **App Home** shows an `auth_provider` block with the user's current connection.
+
+Connecting in one click stands in for your service's real login. Slack requires at least one host in the manifest's `features.user_connections.auth_hosts`, so `example.com` holds the place until you have one. To sign users in to your own service, set `auth_url` on the provider to your OAuth or SSO page, replace `example.com` with its host, and carry the Slack user through the browser in a signed `state` (`ClearStateStore` from `@slack/oauth` works for this) so a connection always lands on the user who clicked **Connect**.
 
 ## Setup
 
+Everything arrives over Socket Mode, so the app needs no public URL. The manifest subscribes to the `user_connection` and `user_connection_status_requested` events, which every app with `features.user_connections` needs. Use a Slack CLI newer than v4.10.0: older versions don't send `features.user_connections` with the manifest.
+
 ```sh
-$ ngrok http 3000  # Replace 1234-56-78-90-0.ngrok-free.app in manifest.json
-$ slack install --environment local  # Create a new app
-$ slack app settings  # Gather the client ID, client secret, and signing secret
-$ slack env init  # Update defaults with them and your ngrok URL
-$ slack manifest  # Validate fields
 $ slack run
-$ open https://1234-56-78-90-0.ngrok-free.app/slack/install  # Install the app
 ```
 
 Then open the app's **Home** tab and click **Connect**.
-
-Swap the `users:read` and `users.profile:read` scopes for the ones your connection needs.

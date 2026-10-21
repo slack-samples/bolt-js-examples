@@ -1,24 +1,99 @@
-import { FileInstallationStore } from "@slack/oauth";
-import { createApp } from "./src/app.js";
+import { App } from "@slack/bolt";
+import { homeView, PROVIDER_VALUE, provider } from "./src/acme.js";
+import * as connections from "./src/connections.js";
 
-const baseUrl = process.env.BASE_URL;
-if (!baseUrl) {
-  throw new Error("Set BASE_URL to the public URL of this app");
-}
+/**
+ * @typedef {import("@slack/bolt").AllMiddlewareArgs} AllMiddlewareArgs
+ * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackEventMiddlewareArgs<"app_home_opened">} AppHomeOpenedArgs
+ * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackActionMiddlewareArgs<import("@slack/bolt").BlockButtonAction>} ButtonArgs
+ * @typedef {{ type: "user_connection", subtype: string, user: string, trigger_id: string }} UserConnectionEvent
+ * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackEventMiddlewareArgs<"user_connection">} UserConnectionArgs
+ * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackEventMiddlewareArgs<"user_connection_status_requested">} StatusRequestedArgs
+ */
 
-const app = createApp({
-  installationStore: new FileInstallationStore({
-    baseDir: "./data/installations",
-  }),
-  baseUrl,
+export const app = new App({
+  token: process.env.SLACK_BOT_TOKEN,
+  appToken: process.env.SLACK_APP_TOKEN,
+  socketMode: true,
 });
-const port = Number.parseInt(process.env.PORT || "3000", 10);
 
-(async () => {
-  try {
-    await app.start(port);
-    app.logger.info("⚡️ Bolt app is running!");
-  } catch (error) {
-    app.logger.error("Failed to start the app", error);
+/**
+ * @param {AppHomeOpenedArgs} args
+ */
+export async function appHomeOpenedCallback({ client, event }) {
+  await client.views.publish({
+    user_id: event.user,
+    view: homeView(provider(event.user)),
+  });
+}
+app.event("app_home_opened", appHomeOpenedCallback);
+
+/**
+ * @param {ButtonArgs} args
+ */
+export async function connectCallback({ ack, body, client }) {
+  await ack();
+  if (body.actions[0].value !== PROVIDER_VALUE) {
+    return;
   }
-})();
+  const userId = body.user.id;
+  connections.connect(userId);
+  const acme = provider(userId);
+  await client.apps.user.connection.requestAuth({
+    user_id: userId,
+    primary_provider: acme,
+  });
+  await client.views.publish({ user_id: userId, view: homeView(acme) });
+}
+app.action("auth_provider_connect", connectCallback);
+
+/**
+ * @param {ButtonArgs} args
+ */
+export async function disconnectCallback({ ack, body, client }) {
+  await ack();
+  if (body.actions[0].value !== PROVIDER_VALUE) {
+    return;
+  }
+  const userId = body.user.id;
+  connections.disconnect(userId);
+  const acme = provider(userId);
+  await client.apps.user.connection.requestAuth({
+    user_id: userId,
+    primary_provider: acme,
+  });
+  await client.views.publish({ user_id: userId, view: homeView(acme) });
+}
+app.action("auth_provider_disconnect", disconnectCallback);
+
+/**
+ * @param {UserConnectionArgs} args
+ */
+export async function userConnectionCallback({ client, event }) {
+  const userConnection = /** @type {UserConnectionEvent} */ (event);
+  if (userConnection.subtype === "connect") {
+    await client.apps.user.connection.requestAuth({
+      trigger_id: userConnection.trigger_id,
+      primary_provider: provider(userConnection.user),
+    });
+  }
+}
+app.event("user_connection", userConnectionCallback);
+
+/**
+ * @param {StatusRequestedArgs} args
+ */
+export async function userConnectionStatusRequestedCallback({ client, event }) {
+  const status = connections.isConnected(event.user)
+    ? "connected"
+    : "disconnected";
+  await client.apps.user.connection.update({ user_id: event.user, status });
+}
+app.event(
+  "user_connection_status_requested",
+  userConnectionStatusRequestedCallback,
+);
+
+if (import.meta.main) {
+  await app.start();
+}

@@ -1,68 +1,51 @@
-export const ACME_VALUE = "acme";
-export const CONNECT_ACTION_ID = `auth_provider_connect_${ACME_VALUE}`;
-export const DISCONNECT_ACTION_ID = `auth_provider_disconnect_${ACME_VALUE}`;
+import * as connections from "./connections.js";
 
-export const WELCOME_GREETING =
-  "*Welcome to Acme!* :rocket:\n" +
-  "Connect your Acme account to start ordering. " +
-  "Anvils ship same day, gravity permitting.";
-export const CONNECTED_GREETING =
-  "*You're all set!* :tada:\n" +
-  "Your Acme account is connected. " +
-  "Please keep giant magnets away from your laptop.";
+export const PROVIDER_VALUE = "acme";
 
 /**
- * @typedef {object} Connection
- * @property {string} identity
- * @property {string} context
+ * @typedef {import("@slack/web-api").UserConnectionPrimaryProvider} Provider
  */
 
 /**
- * @param {string} text
- * @returns {import("@slack/types").PlainTextElement}
+ * @param {string} userId
+ * @returns {Provider}
  */
-function plainText(text) {
-  return { type: "plain_text", text };
-}
-
-/**
- * @param {string} authUrl
- * @param {Connection | undefined} connection
- * @returns {import("@slack/web-api").UserConnectionPrimaryProvider}
- */
-export function acmeProvider(authUrl, connection) {
-  const provider = {
-    value: ACME_VALUE,
-    name: plainText("Acme account"),
-    description: plainText(
-      "Order rocket skates, anvils, and giant magnets without leaving Slack.",
-    ),
-    auth_url: authUrl,
-    is_connected: connection !== undefined,
+export function provider(userId) {
+  /** @type {Provider} */
+  const acme = {
+    value: PROVIDER_VALUE,
+    name: { type: "plain_text", text: "Acme account" },
+    description: {
+      type: "plain_text",
+      text: "Order rocket skates, anvils, and giant magnets without leaving Slack.",
+    },
+    is_connected: connections.isConnected(userId),
   };
-  if (connection === undefined) {
-    return provider;
+  if (acme.is_connected) {
+    acme.connected_identity = { type: "plain_text", text: userId };
   }
-  return {
-    ...provider,
-    connected_identity: plainText(connection.identity),
-    connected_context: plainText(connection.context),
-  };
+  return acme;
 }
 
 /**
- * @param {import("@slack/web-api").UserConnectionPrimaryProvider} provider
+ * @param {Provider} acme
  * @returns {import("@slack/types").HomeView}
  */
-export function homeView(provider) {
-  const greeting = provider.is_connected
-    ? CONNECTED_GREETING
-    : WELCOME_GREETING;
+export function homeView(acme) {
   return {
     type: "home",
     blocks: [
-      { type: "section", text: { type: "mrkdwn", text: greeting } },
-      { type: "auth_provider", ...provider },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "*Welcome to Acme!* :rocket:\n" +
+            "Anvils ship same day, gravity permitting. " +
+            "Please keep giant magnets away from your laptop.",
+        },
+      },
+      { type: "auth_provider", ...acme },
     ],
   };
 }

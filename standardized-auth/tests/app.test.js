@@ -1,220 +1,161 @@
 import * as assert from "node:assert";
-import crypto from "node:crypto";
-import { after, afterEach, before, beforeEach, describe, it } from "node:test";
-import nock from "nock";
-import { AcmeAccounts } from "../src/accounts.js";
-import { CONNECT_ACTION_ID, DISCONNECT_ACTION_ID } from "../src/acme.js";
-import { createApp } from "../src/app.js";
-import { context, installation, temporaryStore } from "./helpers.js";
+import { afterEach, beforeEach, describe, it, mock } from "node:test";
+import {
+  appHomeOpenedCallback,
+  connectCallback,
+  disconnectCallback,
+  userConnectionCallback,
+  userConnectionStatusRequestedCallback,
+} from "../app.js";
+import * as connections from "../src/connections.js";
+import { mockClient, TempConnections } from "./helpers.js";
 
-const SIGNING_SECRET = "test_signing_secret";
+/**
+ * @param {string} value
+ */
+function buttonClick(value) {
+  return { user: { id: "U0ADA" }, actions: [{ value }] };
+}
 
 describe("app", () => {
-  let app;
-  let port;
-  let installationStore;
+  /** @type {TempConnections} */
+  let tempConnections;
+  /** @type {any} */
+  let ack;
+  /** @type {any} */
+  let client;
 
-  before(async () => {
-    process.env.SLACK_CLIENT_ID = "111.222";
-    process.env.SLACK_CLIENT_SECRET = "test_client_secret";
-    process.env.SLACK_SIGNING_SECRET = SIGNING_SECRET;
-    process.env.SLACK_STATE_SECRET = "test_state_secret";
-    nock.enableNetConnect("localhost");
-    installationStore = temporaryStore();
-    app = createApp({ installationStore, baseUrl: "https://acme.example" });
-    const server = await app.start(0);
-    port = server.address().port;
-  });
-
-  beforeEach(async () => {
-    await installationStore.storeInstallation(
-      installation("U0ADA", { userToken: "xoxp-test-ada" }),
-    );
-    nock("https://slack.com")
-      .persist()
-      .post("/api/auth.test")
-      .matchHeader("authorization", "Bearer xoxp-test-ada")
-      .reply(200, { ok: true, user: "ada", team: "Acme Corp" });
+  beforeEach(() => {
+    tempConnections = new TempConnections();
+    ack = mock.fn(async () => {});
+    client = mockClient();
   });
 
   afterEach(() => {
-    nock.cleanAll();
+    tempConnections.close();
   });
 
-  after(async () => {
-    await app.stop();
-    delete process.env.SLACK_CLIENT_ID;
-    delete process.env.SLACK_CLIENT_SECRET;
-    delete process.env.SLACK_SIGNING_SECRET;
-    delete process.env.SLACK_STATE_SECRET;
+  /**
+   * @param {string} method
+   */
+  function lastCall(method) {
+    return client.calls.findLast(
+      (/** @type {[string, any]} */ [name]) => name === method,
+    )[1];
+  }
+
+  function sentProvider() {
+    return lastCall("apps.user.connection.requestAuth").primary_provider;
+  }
+
+  function homeBlock() {
+    return lastCall("views.publish").view.blocks.at(-1);
+  }
+
+  it("app home opened shows the connection", async () => {
+    connections.connect("U0ADA");
+
+    await appHomeOpenedCallback({ client, event: { user: "U0ADA" } });
+
+    assert.strictEqual(lastCall("views.publish").user_id, "U0ADA");
+    assert.strictEqual(homeBlock().is_connected, true);
   });
 
-  it("acknowledges Connect clicks", async () => {
-    const response = await postAction(port, CONNECT_ACTION_ID);
+  it("connect saves and shows the connection", async () => {
+    await connectCallback({ ack, body: buttonClick("acme"), client });
 
-    assert.strictEqual(response.status, 200);
+    assert.strictEqual(ack.mock.callCount(), 1);
+    assert.ok(connections.isConnected("U0ADA"));
+    assert.strictEqual(sentProvider().is_connected, true);
+    assert.strictEqual(homeBlock().is_connected, true);
   });
 
-  it("forgets the account on Disconnect clicks", async () => {
-    const slack = expectCalls(
-      "apps.user.connection.requestAuth",
-      "views.publish",
-      "auth.revoke",
-    );
+  it("disconnect forgets and shows the connection", async () => {
+    connections.connect("U0ADA");
 
-    const response = await postAction(port, DISCONNECT_ACTION_ID);
-    await waitFor(() => slack.isDone());
+    await disconnectCallback({ ack, body: buttonClick("acme"), client });
 
-    assert.strictEqual(response.status, 200);
-    assert.strictEqual(
-      await new AcmeAccounts(installationStore).find(context(), "U0ADA"),
-      undefined,
-    );
+    assert.strictEqual(ack.mock.callCount(), 1);
+    assert.ok(!connections.isConnected("U0ADA"));
+    assert.strictEqual(sentProvider().is_connected, false);
+    assert.strictEqual(homeBlock().is_connected, false);
   });
 
-  it("publishes App Home when it opens", async () => {
-    const slack = expectCalls("views.publish");
+  it("connect ignores another provider", async () => {
+    await connectCallback({ ack, body: buttonClick("wile-e-coyote"), client });
 
-    const response = await postEvent(port, {
-      type: "app_home_opened",
+    assert.strictEqual(ack.mock.callCount(), 1);
+    assert.ok(!connections.isConnected("U0ADA"));
+    assert.deepStrictEqual(client.calls, []);
+  });
+
+  it("disconnect ignores another provider", async () => {
+    connections.connect("U0ADA");
+
+    await disconnectCallback({
+      ack,
+      body: buttonClick("wile-e-coyote"),
+      client,
+    });
+
+    assert.strictEqual(ack.mock.callCount(), 1);
+    assert.ok(connections.isConnected("U0ADA"));
+    assert.deepStrictEqual(client.calls, []);
+  });
+
+  it("user connection connect opens the modal", async () => {
+    const event = {
+      subtype: "connect",
       user: "U0ADA",
-    });
-    await waitFor(() => slack.isDone());
+      trigger_id: "123.456.abc",
+    };
 
-    assert.strictEqual(response.status, 200);
+    await userConnectionCallback({ client, event });
+
+    const args = lastCall("apps.user.connection.requestAuth");
+    assert.strictEqual(args.trigger_id, "123.456.abc");
+    assert.strictEqual(args.primary_provider.is_connected, false);
   });
 
-  it("answers status requests", async () => {
-    let status;
-    const slack = nock("https://slack.com")
-      .post("/api/apps.user.connection.update", (body) => {
-        status = body.status;
-        return true;
-      })
-      .reply(200, { ok: true });
-
-    const response = await postEvent(port, {
-      type: "user_connection_status_requested",
+  it("user connection disconnect is ignored", async () => {
+    const event = {
+      subtype: "disconnect",
       user: "U0ADA",
-    });
-    await waitFor(() => slack.isDone());
+      trigger_id: "123.456.abc",
+    };
 
-    assert.strictEqual(response.status, 200);
-    assert.strictEqual(status, "connected");
+    await userConnectionCallback({ client, event });
+
+    assert.deepStrictEqual(client.calls, []);
   });
 
-  it("forgets users whose tokens were revoked", async () => {
-    const slack = expectCalls(
-      "apps.user.connection.requestAuth",
-      "views.publish",
-    );
+  it("status requested reports connected users", async () => {
+    connections.connect("U0ADA");
 
-    const response = await postEvent(port, {
-      type: "tokens_revoked",
-      tokens: { oauth: ["U0ADA"] },
+    await userConnectionStatusRequestedCallback({
+      client,
+      event: { user: "U0ADA" },
     });
-    await waitFor(() => slack.isDone());
 
-    assert.strictEqual(response.status, 200);
-    assert.strictEqual(
-      await new AcmeAccounts(installationStore).find(context(), "U0ADA"),
-      undefined,
-    );
+    assert.deepStrictEqual(client.calls, [
+      [
+        "apps.user.connection.update",
+        { user_id: "U0ADA", status: "connected" },
+      ],
+    ]);
   });
 
-  it("redirects installs straight to Slack with the user scope", async () => {
-    const response = await fetch(`http://localhost:${port}/slack/install`, {
-      redirect: "manual",
+  it("status requested reports unknown users as disconnected", async () => {
+    await userConnectionStatusRequestedCallback({
+      client,
+      event: { user: "U0ADA" },
     });
 
-    const location = new URL(`${response.headers.get("location")}`);
-    assert.strictEqual(response.status, 302);
-    assert.strictEqual(
-      location.searchParams.get("user_scope"),
-      "users.profile:read",
-    );
+    assert.deepStrictEqual(client.calls, [
+      [
+        "apps.user.connection.update",
+        { user_id: "U0ADA", status: "disconnected" },
+      ],
+    ]);
   });
 });
-
-/**
- * @param {...string} methods
- */
-function expectCalls(...methods) {
-  const slack = nock("https://slack.com");
-  for (const method of methods) {
-    slack.post(`/api/${method}`).reply(200, { ok: true });
-  }
-  return slack;
-}
-
-/**
- * @param {() => boolean} condition
- */
-async function waitFor(condition) {
-  const deadline = Date.now() + 2000;
-  while (!condition()) {
-    assert.ok(Date.now() < deadline, "timed out waiting for the listener");
-    await new Promise((resolve) => setTimeout(resolve, 10));
-  }
-}
-
-/**
- * @param {number} port
- * @param {string} actionId
- */
-async function postAction(port, actionId) {
-  const payload = {
-    type: "block_actions",
-    api_app_id: "A0001",
-    team: { id: "T0001" },
-    user: { id: "U0ADA", team_id: "T0001" },
-    trigger_id: "123.456.abc",
-    actions: [
-      {
-        type: "button",
-        action_id: actionId,
-        block_id: "acme",
-        action_ts: "1700000000.000001",
-      },
-    ],
-  };
-  const body = new URLSearchParams({
-    payload: JSON.stringify(payload),
-  }).toString();
-  return post(port, body, "application/x-www-form-urlencoded");
-}
-
-/**
- * @param {number} port
- * @param {object} event
- */
-async function postEvent(port, event) {
-  const body = JSON.stringify({
-    type: "event_callback",
-    api_app_id: "A0001",
-    team_id: "T0001",
-    event,
-    event_id: "Ev0001",
-    event_time: 1700000000,
-  });
-  return post(port, body, "application/json");
-}
-
-/**
- * @param {number} port
- * @param {string} body
- * @param {string} contentType
- */
-async function post(port, body, contentType) {
-  const timestamp = Math.floor(Date.now() / 1000).toString();
-  const signature = `v0=${crypto.createHmac("sha256", SIGNING_SECRET).update(`v0:${timestamp}:${body}`).digest("hex")}`;
-  return fetch(`http://localhost:${port}/slack/events`, {
-    method: "POST",
-    headers: {
-      "Content-Type": contentType,
-      "x-slack-request-timestamp": timestamp,
-      "x-slack-signature": signature,
-    },
-    body,
-  });
-}
