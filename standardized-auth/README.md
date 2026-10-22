@@ -18,7 +18,7 @@ Connecting in one click stands in for your service's real login. Slack requires 
 
 ## Setup
 
-Everything arrives over Socket Mode, so the app needs no public URL. The manifest subscribes to the `user_connection` and `user_connection_status_requested` events, which every app with `features.user_connections` needs. Use a Slack CLI newer than v4.10.0: older versions don't send `features.user_connections` with the manifest.
+Everything arrives over Socket Mode, so the app needs no public URL. The manifest subscribes to the `user_connection` and `user_connection_status_requested` events, which every app with `features.user_connections` needs. Use a Slack CLI newer than v4.10.0: older versions don't send `features.user_connections` with the manifest. Use Node.js 24.2 or newer: `app.js` starts the app only when `import.meta.main` is true, and older versions exit without connecting.
 
 ```sh
 $ slack run

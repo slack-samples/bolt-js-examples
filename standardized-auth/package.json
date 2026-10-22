@@ -1,6 +1,9 @@
 {
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24.2"
+  },
   "scripts": {
     "check": "npx tsc --checkJs --noEmit app.js",
     "lint": "npx @biomejs/biome check .",
