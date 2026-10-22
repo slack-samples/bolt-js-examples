@@ -6,7 +6,6 @@ import * as connections from "./src/connections.js";
  * @typedef {import("@slack/bolt").AllMiddlewareArgs} AllMiddlewareArgs
  * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackEventMiddlewareArgs<"app_home_opened">} AppHomeOpenedArgs
  * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackActionMiddlewareArgs<import("@slack/bolt").BlockButtonAction>} ButtonArgs
- * @typedef {{ type: "user_connection", subtype: string, user: string, trigger_id: string }} UserConnectionEvent
  * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackEventMiddlewareArgs<"user_connection">} UserConnectionArgs
  * @typedef {AllMiddlewareArgs & import("@slack/bolt").SlackEventMiddlewareArgs<"user_connection_status_requested">} StatusRequestedArgs
  */
@@ -70,11 +69,10 @@ app.action("auth_provider_disconnect", disconnectCallback);
  * @param {UserConnectionArgs} args
  */
 export async function userConnectionCallback({ client, event }) {
-  const userConnection = /** @type {UserConnectionEvent} */ (event);
-  if (userConnection.subtype === "connect") {
+  if (event.subtype === "connect") {
     await client.apps.user.connection.requestAuth({
-      trigger_id: userConnection.trigger_id,
-      primary_provider: provider(userConnection.user),
+      trigger_id: event.trigger_id,
+      primary_provider: provider(event.user),
     });
   }
 }
