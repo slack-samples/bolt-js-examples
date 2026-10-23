@@ -71,3 +71,16 @@ updates:
         versions:
           - "25.x"
           - "26.x"
+  - package-ecosystem: "npm"
+    directory: "standardized-auth"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@slack/*"
+    ignore:
+      - dependency-name: "@types/node"
+        versions:
+          - "25.x"
+          - "26.x"
