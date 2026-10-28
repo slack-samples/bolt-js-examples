@@ -13,7 +13,6 @@ const response = await client.canvases.create({
     type: "markdown",
     markdown: "> standalone canvas!",
   },
-  channel_id: "C0123456789",
 });
 
 // Inspect the response

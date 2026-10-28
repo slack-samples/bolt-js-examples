@@ -8,7 +8,7 @@ const client = new WebClient(token);
 
 // Call the canvases.getContent method
 const response = await client.canvases.getContent({
-  canvas_id: "F1234567890",
+  canvas_id: "F1234ABCD",
   content_type: "markdown",
 });
 
