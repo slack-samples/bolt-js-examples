@@ -9,15 +9,15 @@
     "test": "node --test"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@slack/bolt": "^5.1.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
+    "@biomejs/biome": "^2.6.3",
     "@slack/cli-hooks": "^2.0.0",
     "@types/node": "^24.19.2",
-    "nock": "^15.0.1",
+    "nock": "^15.0.5",
     "typescript": "^7.0.2"
   }
 }
