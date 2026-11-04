@@ -72,7 +72,7 @@ updates:
           - "25.x"
           - "26.x"
   - package-ecosystem: "npm"
-    directory: "standardized-auth"
+    directory: "authentication/standardized-auth"
     schedule:
       interval: "daily"
     cooldown:
