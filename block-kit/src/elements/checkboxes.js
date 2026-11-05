@@ -63,13 +63,10 @@ export function example01() {
                 type: "plain_text",
                 text: "Checkbox 2",
               },
-              description:
-                /** @type {import('@slack/types').PlainTextElement} */ (
-                  /** @type {unknown} */ ({
-                    type: "mrkdwn",
-                    text: "*A description of option two*",
-                  })
-                ),
+              description: {
+                type: "mrkdwn",
+                text: "*A description of option two*",
+              },
             },
           ],
         },
