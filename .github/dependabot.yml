@@ -4,35 +4,70 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 7
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/no-auth"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/slack-identity"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
   - package-ecosystem: "npm"
     directory: "block-kit"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
         versions:
           - "25.x"
+          - "26.x"
+  - package-ecosystem: "npm"
+    directory: "methods"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@slack/*"
+    ignore:
+      - dependency-name: "@types/node"
+        versions:
+          - "25.x"
+          - "26.x"
