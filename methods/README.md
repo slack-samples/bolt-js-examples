@@ -16,6 +16,13 @@ $ slack run chat-post-message.js  # Make the request
 
 ## What's on call
 
+### admin
+
+- **[admin.slackbot.skills.list](https://docs.slack.dev/reference/methods/admin.slackbot.skills.list)**: Lists metadata for Slackbot skills owned by an organization. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-list.js).
+- **[admin.slackbot.skills.publish](https://docs.slack.dev/reference/methods/admin.slackbot.skills.publish)**: Publishes Slackbot skills to an organization's catalog. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-publish.js).
+- **[admin.slackbot.skills.setAutoEnabled](https://docs.slack.dev/reference/methods/admin.slackbot.skills.setAutoEnabled)**: Sets who a Slackbot skill is automatically turned on for. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-set-auto-enabled.js).
+- **[admin.slackbot.skills.unpublish](https://docs.slack.dev/reference/methods/admin.slackbot.skills.unpublish)**: Removes Slackbot skills from the org catalog, preserving access, libraries, and deployments. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-unpublish.js).
+
 ### agents
 
 - **[agents.conversations.archive](https://docs.slack.dev/reference/methods/agents.conversations.archive)**: Archive a code channel. [Implementation](./src/agents/conversations/agents-conversations-archive.js).
@@ -42,3 +49,13 @@ $ slack run chat-post-message.js  # Make the request
 ### chat
 
 - **[chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage)**: Sends a message to a channel. [Implementation](./src/chat/chat-post-message.js).
+
+### slackbot
+
+- **[slackbot.skills.create](https://docs.slack.dev/reference/methods/slackbot.skills.create)**: Creates a skill from markdown instructions, or turns an existing canvas the caller owns into a skill. [Implementation](./src/slackbot/skills/slackbot-skills-create.js).
+- **[slackbot.skills.delete](https://docs.slack.dev/reference/methods/slackbot.skills.delete)**: Deletes a Slackbot skill and its canvas, and removes it from every library, skill set, and the org catalog. [Implementation](./src/slackbot/skills/slackbot-skills-delete.js).
+- **[slackbot.skills.info](https://docs.slack.dev/reference/methods/slackbot.skills.info)**: Returns one Slackbot skill, including its instructions. [Implementation](./src/slackbot/skills/slackbot-skills-info.js).
+- **[slackbot.skills.library.add](https://docs.slack.dev/reference/methods/slackbot.skills.library.add)**: Turns a skill on in the caller's Slackbot library. [Implementation](./src/slackbot/skills/library/slackbot-skills-library-add.js).
+- **[slackbot.skills.library.remove](https://docs.slack.dev/reference/methods/slackbot.skills.library.remove)**: Turns a skill off in the caller's Slackbot library. [Implementation](./src/slackbot/skills/library/slackbot-skills-library-remove.js).
+- **[slackbot.skills.list](https://docs.slack.dev/reference/methods/slackbot.skills.list)**: Lists Slackbot skills from the caller's point of view. Instructions are not included. [Implementation](./src/slackbot/skills/slackbot-skills-list.js).
+- **[slackbot.skills.update](https://docs.slack.dev/reference/methods/slackbot.skills.update)**: Changes a Slackbot skill's instructions or metadata. [Implementation](./src/slackbot/skills/slackbot-skills-update.js).
