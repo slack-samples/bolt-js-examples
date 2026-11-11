@@ -1,0 +1,34 @@
+{
+  "$schema": "https://www.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx tsc --checkJs --noEmit --types node app.js src/app.js",
+    "lint": "npx @biomejs/biome check .",
+    "lint:fix": "npx @biomejs/biome check --write .",
+    "start": "node app.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slack-samples/bolt-js-examples.git"
+  },
+  "author": "Slack Technologies, LLC",
+  "bugs": {
+    "url": "https://github.com/slack-samples/bolt-js-examples/issues"
+  },
+  "homepage": "https://github.com/slack-samples/bolt-js-examples/blob/main/authentication/installing-with-oauth/README.md",
+  "dependencies": {
+    "@slack/bolt": "^5.1.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.4",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/node": "^24.19.2",
+    "nock": "^15.0.6",
+    "supertest": "^7.0.0",
+    "typescript": "^7.0.2"
+  }
+}
