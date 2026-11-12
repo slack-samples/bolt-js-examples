@@ -21,6 +21,7 @@ $ slack run chat-post-message.js  # Make the request
 - **[admin.slackbot.skills.list](https://docs.slack.dev/reference/methods/admin.slackbot.skills.list)**: Lists metadata for Slackbot skills owned by an organization. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-list.js).
 - **[admin.slackbot.skills.publish](https://docs.slack.dev/reference/methods/admin.slackbot.skills.publish)**: Publishes Slackbot skills to an organization's catalog. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-publish.js).
 - **[admin.slackbot.skills.setAutoEnabled](https://docs.slack.dev/reference/methods/admin.slackbot.skills.setAutoEnabled)**: Sets who a Slackbot skill is automatically turned on for. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-set-auto-enabled.js).
+- **[admin.slackbot.skills.unpublish](https://docs.slack.dev/reference/methods/admin.slackbot.skills.unpublish)**: Removes Slackbot skills from the org catalog, preserving access, libraries, and deployments. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-unpublish.js).
 
 ### agents
 
