@@ -8,11 +8,11 @@ const client = new WebClient(token);
 
 // Call the admin.apps.mcp.servers.permissions.set method
 const response = await client.admin.apps.mcp.servers.permissions.set({
-  app_id: "A0123ABCD",
-  server_id: "Amcp0456EFGH",
+  app_id: "A0000000001",
+  server_id: "Amcp0000000001",
   permission_type: "named_entities",
-  user_ids: ["U0123ABCD"],
-  usergroup_ids: ["S0123ABCD"],
+  user_ids: ["U00000001", "U00000002"],
+  usergroup_ids: ["S00000001", "S00000002"],
 });
 
 // Inspect the response
