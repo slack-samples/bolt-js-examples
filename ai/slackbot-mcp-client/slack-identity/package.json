@@ -18,7 +18,7 @@
     "@biomejs/biome": "^2.6.5",
     "@slack/cli-hooks": "^2.0.0",
     "@types/node": "^24.19.2",
-    "nock": "^15.0.5",
+    "nock": "^15.0.6",
     "typescript": "^7.0.2"
   }
 }
