@@ -8,9 +8,8 @@ const client = new WebClient(token);
 
 // Call the slackbot.skills.list method
 const response = await client.slackbot.skills.list({
-  filter: "library",
+  filter: "owned",
   category: "productivity",
-  limit: 100,
 });
 
 // Inspect the response
