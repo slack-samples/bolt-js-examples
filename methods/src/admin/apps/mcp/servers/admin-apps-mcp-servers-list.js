@@ -7,9 +7,7 @@ const token = process.env.SLACK_TOKEN;
 const client = new WebClient(token);
 
 // Call the admin.apps.mcp.servers.list method
-const response = await client.admin.apps.mcp.servers.list({
-  limit: 100,
-});
+const response = await client.admin.apps.mcp.servers.list();
 
 // Inspect the response
 console.log(response);
