@@ -18,7 +18,7 @@ $ slack run chat-post-message.js  # Make the request
 
 ### admin
 
-- **[admin.slackbot.skills.list](https://docs.slack.dev/reference/methods/admin.slackbot.skills.list)**: Lists metadata for Slackbot skills owned by an organization. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-list.js).
+- **[admin.slackbot.skills.list](https://docs.slack.dev/reference/methods/admin.slackbot.skills.list)**: Lists metadata for skills owned by the organization, including invite-only skills. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-list.js).
 
 ### agents
 
