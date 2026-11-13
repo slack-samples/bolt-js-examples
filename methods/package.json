@@ -20,7 +20,7 @@
     "@slack/web-api": "^8.3.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.6.5",
+    "@biomejs/biome": "^2.6.6",
     "@slack/cli-hooks": "^2.0.0",
     "@types/node": "^24.19.2",
     "typescript": "^7.0.2"
