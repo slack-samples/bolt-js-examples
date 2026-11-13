@@ -10,10 +10,6 @@ const client = new WebClient(token);
 const response = await client.admin.slackbot.skills.list({
   category: "productivity",
   creator_ids: ["U0123ABCD"],
-  publish_status: "published",
-  auto_enabled_status: "enabled",
-  sort: "usage_count",
-  sort_dir: "desc",
 });
 
 // Inspect the response
