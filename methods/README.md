@@ -19,6 +19,7 @@ $ slack run chat-post-message.js  # Make the request
 ### admin
 
 - **[admin.apps.mcp.servers.list](https://docs.slack.dev/reference/methods/admin.apps.mcp.servers.list)**: List third-party app MCP servers approved for an organization. [Implementation](./src/admin/apps/mcp/servers/admin-apps-mcp-servers-list.js).
+- **[admin.apps.mcp.servers.permissions.list](https://docs.slack.dev/reference/methods/admin.apps.mcp.servers.permissions.list)**: List MCP servers for an app with their access control permissions. [Implementation](./src/admin/apps/mcp/servers/admin-apps-mcp-servers-permissions-list.js).
 - **[admin.slackbot.skills.list](https://docs.slack.dev/reference/methods/admin.slackbot.skills.list)**: Lists metadata for skills owned by the organization, including invite-only skills. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-list.js).
 - **[admin.slackbot.skills.publish](https://docs.slack.dev/reference/methods/admin.slackbot.skills.publish)**: Publishes Slackbot skills to an organization's catalog. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-publish.js).
 - **[admin.slackbot.skills.setAutoEnabled](https://docs.slack.dev/reference/methods/admin.slackbot.skills.setAutoEnabled)**: Sets who a Slackbot skill is automatically turned on for. [Implementation](./src/admin/slackbot/skills/admin-slackbot-skills-set-auto-enabled.js).
