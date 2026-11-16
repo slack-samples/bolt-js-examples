@@ -39,4 +39,4 @@ jobs:
           npm run check
           npm test --if-present
       - name: Lint the root
-        run: npx --prefix "${{ matrix.showcase }}" biome check .
+        run: ${{ matrix.showcase }}/node_modules/.bin/biome check .
