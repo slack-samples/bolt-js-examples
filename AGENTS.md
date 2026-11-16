@@ -12,7 +12,7 @@ To install the Slack plugin for your coding agent, follow [Claude Code, Codex, C
 
 ## Before you finish
 
-Run `npm run lint`, `npm run check`, and `npm test` inside the example you changed, where it defines them. CI runs the same on every PR.
+Run `npm run lint`, `npm run check`, and `npm test` inside the example you changed, where it defines them. For files outside the examples, run `npx --prefix block-kit biome check .` from the root. CI runs the same on every PR.
 
 ## Code Style
 
