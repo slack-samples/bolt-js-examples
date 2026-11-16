@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "check": "npx tsc --checkJs --noEmit --types node src/**/*.js tests/**/*.js",
-    "lint": "npx @biomejs/biome check src tests",
-    "lint:fix": "npx @biomejs/biome check --write src tests",
+    "lint": "npx @biomejs/biome check .",
+    "lint:fix": "npx @biomejs/biome check --write .",
     "test": "node --test"
   },
   "repository": {
