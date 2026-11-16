@@ -36,6 +36,7 @@ export function example01() {
 ```
 
 Rules:
+
 - ES Modules (`export function`, no `module.exports`)
 - One file per block type in `src/blocks/`
 - Each example is an exported function named `example01()`, `example02()`, etc.
