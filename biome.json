@@ -9,8 +9,7 @@
     "ignoreUnknown": false,
     "includes": [
       "**",
-      "!.agents/skills",
-      "!.claude/skills",
+      "!.*/skills",
       "!ai/slackbot-mcp-client/no-auth",
       "!ai/slackbot-mcp-client/rich-responses/mcp-apps",
       "!ai/slackbot-mcp-client/slack-identity",
