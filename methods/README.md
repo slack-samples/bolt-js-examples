@@ -53,6 +53,10 @@ $ slack run chat-post-message.js  # Make the request
 
 - **[chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage)**: Sends a message to a channel. [Implementation](./src/chat/chat-post-message.js).
 
+### oauth
+
+- **[oauth.v2.beginShortTokenRotation](https://docs.slack.dev/reference/methods/oauth.v2.beginShortTokenRotation)**: Call this to rotate the secret on an old API token with a short secret. Must be paired with a call to oauth.v2.completeShortTokenRotation to confirm the change. [Implementation](./src/oauth/v2/oauth-v2-begin-short-token-rotation.js).
+
 ### slackbot
 
 - **[slackbot.skills.create](https://docs.slack.dev/reference/methods/slackbot.skills.create)**: Creates a skill from markdown instructions, or turns an existing canvas the caller owns into a skill. [Implementation](./src/slackbot/skills/slackbot-skills-create.js).
