@@ -40,6 +40,10 @@ $ slack run chat-post-message.js  # Make the request
 - **[agents.sessions.rename](https://docs.slack.dev/reference/methods/agents.sessions.rename)**: Rename an agent session. [Implementation](./src/agents/sessions/agents-sessions-rename.js).
 - **[agents.sessions.setStatus](https://docs.slack.dev/reference/methods/agents.sessions.setStatus)**: Set an agent session's lifecycle status, creating the session if needed. [Implementation](./src/agents/sessions/agents-sessions-set-status.js).
 
+### apps
+
+- **[apps.managed.permissions.set](https://docs.slack.dev/reference/methods/apps.managed.permissions.set)**: Set who can interact with a managed app. Lets the builder who created a managed app on a partner platform configure the app's permissions, using a user token or bot token from the manager app. Permissions can only be set before the app is installed: if the app is already installed, this method makes no change and returns the app's current permissions. [Implementation](./src/apps/managed/permissions/apps-managed-permissions-set.js).
+
 ### blocks
 
 - **[blocks.validate](https://docs.slack.dev/reference/methods/blocks.validate)**: Validates blocks, messages, and views Block Kit JSON payloads. [Implementation](./src/blocks/blocks-validate.js).
