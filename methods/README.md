@@ -55,6 +55,7 @@ $ slack run chat-post-message.js  # Make the request
 
 ### entity
 
+- **[entity.acknowledgeCommentAction](https://docs.slack.dev/reference/methods/entity.acknowledgeCommentAction)**: Acknowledge a comment mutation (edit, delete, or post) on a work object entity. Apps call this endpoint to confirm they have processed a comment action, and the backend emits a dedicated RTM event to the user. [Implementation](./src/entity/entity-acknowledge-comment-action.js).
 - **[entity.presentComments](https://docs.slack.dev/reference/methods/entity.presentComments)**: Provide comments for work objects. Apps call this endpoint to send per-user flexpane comment data to the client. [Implementation](./src/entity/entity-present-comments.js).
 
 ### slackbot
