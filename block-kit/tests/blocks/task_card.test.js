@@ -9,7 +9,7 @@ describe("task_card", () => {
       type: "task_card",
       task_id: "task_1",
       title: "Fetching weather data",
-      status: "pending",
+      status: "in_progress",
       output: {
         type: "rich_text",
         elements: [

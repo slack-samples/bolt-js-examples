@@ -1,5 +1,5 @@
 /**
- * Holds interactive elements like feedback buttons and icon buttons.
+ * Displays actions as contextual info, which can include both feedback buttons and icon buttons.
  *
  * @see {@link https://docs.slack.dev/reference/block-kit/blocks/context-actions-block/}
  */

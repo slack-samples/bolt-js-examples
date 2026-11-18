@@ -55,7 +55,7 @@ export function example01() {
       {
         task_id: "call_002",
         title: "Checked user permissions",
-        status: "pending",
+        status: "in_progress",
       },
       {
         task_id: "call_003",
