@@ -40,6 +40,10 @@ $ slack run chat-post-message.js  # Make the request
 - **[agents.sessions.rename](https://docs.slack.dev/reference/methods/agents.sessions.rename)**: Rename an agent session. [Implementation](./src/agents/sessions/agents-sessions-rename.js).
 - **[agents.sessions.setStatus](https://docs.slack.dev/reference/methods/agents.sessions.setStatus)**: Set an agent session's lifecycle status, creating the session if needed. [Implementation](./src/agents/sessions/agents-sessions-set-status.js).
 
+### apps
+
+- **[apps.icon.set](https://docs.slack.dev/reference/methods/apps.icon.set)**: Sets the app icon. [Implementation](./src/apps/icon/apps-icon-set.js).
+
 ### blocks
 
 - **[blocks.validate](https://docs.slack.dev/reference/methods/blocks.validate)**: Validates blocks, messages, and views Block Kit JSON payloads. [Implementation](./src/blocks/blocks-validate.js).
