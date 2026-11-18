@@ -56,6 +56,7 @@ $ slack run chat-post-message.js  # Make the request
 ### oauth
 
 - **[oauth.v2.beginShortTokenRotation](https://docs.slack.dev/reference/methods/oauth.v2.beginShortTokenRotation)**: Call this to rotate the secret on an old API token with a short secret. Must be paired with a call to oauth.v2.completeShortTokenRotation to confirm the change. [Implementation](./src/oauth/v2/oauth-v2-begin-short-token-rotation.js).
+- **[oauth.v2.completeShortTokenRotation](https://docs.slack.dev/reference/methods/oauth.v2.completeShortTokenRotation)**: Call this to finish rotating the secret on an old API token with a short secret. Must be paired with a call to oauth.v2.beginShortTokenRotation to start the process. [Implementation](./src/oauth/v2/oauth-v2-complete-short-token-rotation.js).
 
 ### slackbot
 
