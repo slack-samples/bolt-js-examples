@@ -43,6 +43,7 @@ $ slack run chat-post-message.js  # Make the request
 ### assistant
 
 - **[assistant.search.context](https://docs.slack.dev/reference/methods/assistant.search.context)**: Searches messages, files, channels and users across your Slack organization. [Implementation](./src/assistant/search/assistant-search-context.js).
+- **[assistant.search.info](https://docs.slack.dev/reference/methods/assistant.search.info)**: Returns search capabilities on a given team. [Implementation](./src/assistant/search/assistant-search-info.js).
 
 ### blocks
 
