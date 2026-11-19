@@ -16,9 +16,8 @@ updates:
         - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
-        versions:
-          - "27.x"
-          - "28.x"
+        update-types:
+          - "version-update:semver-major"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
     schedule:
@@ -29,9 +28,8 @@ updates:
         - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
-        versions:
-          - "27.x"
-          - "28.x"
+        update-types:
+          - "version-update:semver-major"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/slack-identity"
     schedule:
@@ -42,9 +40,8 @@ updates:
         - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
-        versions:
-          - "27.x"
-          - "28.x"
+        update-types:
+          - "version-update:semver-major"
   - package-ecosystem: "npm"
     directory: "block-kit"
     schedule:
@@ -55,9 +52,8 @@ updates:
         - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
-        versions:
-          - "27.x"
-          - "28.x"
+        update-types:
+          - "version-update:semver-major"
   - package-ecosystem: "npm"
     directory: "methods"
     schedule:
@@ -68,6 +64,5 @@ updates:
         - "@slack/*"
     ignore:
       - dependency-name: "@types/node"
-        versions:
-          - "27.x"
-          - "28.x"
+        update-types:
+          - "version-update:semver-major"
