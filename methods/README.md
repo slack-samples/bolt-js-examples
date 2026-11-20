@@ -66,6 +66,10 @@ $ slack run chat-post-message.js  # Make the request
 - **[chat.startStream](https://docs.slack.dev/reference/methods/chat.startStream)**: Starts a new streaming conversation. [Implementation](./src/chat/chat-start-stream.js).
 - **[chat.stopStream](https://docs.slack.dev/reference/methods/chat.stopStream)**: Stops a streaming conversation. [Implementation](./src/chat/chat-stop-stream.js).
 
+### entity
+
+- **[entity.presentComments](https://docs.slack.dev/reference/methods/entity.presentComments)**: Provide comments for work objects. Apps call this endpoint to send per-user flexpane comment data to the client. [Implementation](./src/entity/entity-present-comments.js).
+
 ### slackbot
 
 - **[slackbot.skills.create](https://docs.slack.dev/reference/methods/slackbot.skills.create)**: Creates a skill from markdown instructions, or turns an existing canvas the caller owns into a skill. [Implementation](./src/slackbot/skills/slackbot-skills-create.js).
