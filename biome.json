@@ -14,7 +14,8 @@
       "!ai/slackbot-mcp-client/rich-responses/mcp-apps",
       "!ai/slackbot-mcp-client/slack-identity",
       "!block-kit",
-      "!methods"
+      "!methods",
+      "!authentication/installing-with-oauth"
     ]
   },
   "formatter": {
