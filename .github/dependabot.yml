@@ -17,8 +17,8 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         versions:
-          - "25.x"
-          - "26.x"
+          - "27.x"
+          - "28.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/rich-responses/mcp-apps"
     schedule:
@@ -30,8 +30,8 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         versions:
-          - "25.x"
-          - "26.x"
+          - "27.x"
+          - "28.x"
   - package-ecosystem: "npm"
     directory: "ai/slackbot-mcp-client/slack-identity"
     schedule:
@@ -43,8 +43,8 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         versions:
-          - "25.x"
-          - "26.x"
+          - "27.x"
+          - "28.x"
   - package-ecosystem: "npm"
     directory: "block-kit"
     schedule:
@@ -56,8 +56,8 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         versions:
-          - "25.x"
-          - "26.x"
+          - "27.x"
+          - "28.x"
   - package-ecosystem: "npm"
     directory: "methods"
     schedule:
@@ -69,5 +69,5 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         versions:
-          - "25.x"
-          - "26.x"
+          - "27.x"
+          - "28.x"
