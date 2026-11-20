@@ -33,6 +33,7 @@ Read the [docs](https://docs.slack.dev/block-kit/) to learn concepts behind thes
 - **[Broadcast](https://docs.slack.dev/reference/block-kit/block-elements/broadcast-element)**: Displays a broadcast mention such as here, channel, or everyone. [Implementation](./src/elements/broadcast.js).
 - **[Button](https://docs.slack.dev/reference/block-kit/block-elements/button-element)**: Allows users a direct path to performing basic actions. [Implementation](./src/elements/button.js).
 - **[Channel](https://docs.slack.dev/reference/block-kit/block-elements/channel-element)**: Renders as a mention of a channel. [Implementation](./src/elements/channel.js).
+- **[Checkboxes](https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element)**: Allows users to choose multiple items from a list of options. [Implementation](./src/elements/checkboxes.js).
 - **[Color](https://docs.slack.dev/reference/block-kit/block-elements/color-element)**: Displays a color swatch from a hex value. [Implementation](./src/elements/color.js).
 - **[Date](https://docs.slack.dev/reference/block-kit/block-elements/date-element)**: Displays a formatted, localized date. [Implementation](./src/elements/date.js).
 - **[Date picker](https://docs.slack.dev/reference/block-kit/block-elements/date-picker-element)**: Allows users to select a date from a calendar style UI. [Implementation](./src/elements/date_picker.js).
