@@ -9,6 +9,7 @@ const client = new WebClient(token);
 // Call the assistant.search.context method
 const response = await client.assistant.search.context({
   query: "What is the latest on project Gizmo?",
+  term_clauses: ["project gizmo"],
   action_token: "12345.98765.abcd2358fdea",
   channel_types: ["public_channel", "private_channel", "mpim", "im"],
   content_types: ["messages", "files", "channels"],
