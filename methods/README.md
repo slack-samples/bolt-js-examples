@@ -42,7 +42,13 @@ $ slack run chat-post-message.js  # Make the request
 
 ### apps
 
+- **[apps.icon.set](https://docs.slack.dev/reference/methods/apps.icon.set)**: Sets the app icon. [Implementation](./src/apps/icon/apps-icon-set.js).
 - **[apps.managed.permissions.set](https://docs.slack.dev/reference/methods/apps.managed.permissions.set)**: Set who can interact with a managed app. Lets the builder who created a managed app on a partner platform configure the app's permissions, using a user token or bot token from the manager app. Permissions can only be set before the app is installed: if the app is already installed, this method makes no change and returns the app's current permissions. [Implementation](./src/apps/managed/permissions/apps-managed-permissions-set.js).
+
+### assistant
+
+- **[assistant.search.context](https://docs.slack.dev/reference/methods/assistant.search.context)**: Searches messages, files, channels and users across your Slack organization. [Implementation](./src/assistant/search/assistant-search-context.js).
+- **[assistant.search.info](https://docs.slack.dev/reference/methods/assistant.search.info)**: Returns search capabilities on a given team. [Implementation](./src/assistant/search/assistant-search-info.js).
 
 ### blocks
 
