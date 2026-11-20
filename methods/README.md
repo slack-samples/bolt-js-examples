@@ -44,6 +44,11 @@ $ slack run chat-post-message.js  # Make the request
 
 - **[apps.icon.set](https://docs.slack.dev/reference/methods/apps.icon.set)**: Sets the app icon. [Implementation](./src/apps/icon/apps-icon-set.js).
 
+### assistant
+
+- **[assistant.search.context](https://docs.slack.dev/reference/methods/assistant.search.context)**: Searches messages, files, channels and users across your Slack organization. [Implementation](./src/assistant/search/assistant-search-context.js).
+- **[assistant.search.info](https://docs.slack.dev/reference/methods/assistant.search.info)**: Returns search capabilities on a given team. [Implementation](./src/assistant/search/assistant-search-info.js).
+
 ### blocks
 
 - **[blocks.validate](https://docs.slack.dev/reference/methods/blocks.validate)**: Validates blocks, messages, and views Block Kit JSON payloads. [Implementation](./src/blocks/blocks-validate.js).
