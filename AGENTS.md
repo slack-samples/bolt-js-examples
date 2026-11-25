@@ -10,6 +10,10 @@ A collection of small Slack apps built with Bolt for JavaScript, each showing on
 
 To install the Slack plugin for your coding agent, follow [Claude Code, Codex, Cursor, and Other Coding Agents](./README.md#claude-code-codex-cursor-and-other-coding-agents) in the README.
 
+## Slack Skills
+
+Slack skills are pre-installed in `.agents/skills` (and `.claude/skills` for Claude Code). Use them for Slack work. If the Slack plugin is installed, prefer its `slack:` skills, such as `slack:block-kit`, which may be newer.
+
 ## Before you finish
 
 Run `npm run lint`, `npm run check`, and `npm test` inside the example you changed, where it defines them. For files outside the examples, run `block-kit/node_modules/.bin/biome check .` from the root. CI runs the same on every PR.
